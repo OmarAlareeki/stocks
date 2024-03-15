@@ -3,9 +3,8 @@
 }
 
 .App-logo {
-  height: 8vmin;
   pointer-events: none;
-  font-size: 250%;
+  font-size: 40px;
   color: #3bff00;
   position: relative;
   top: 0px;
@@ -13,7 +12,7 @@
 }
 
 .header-menu {
-  font-size: 55px;
+  font-size: 40px;
   color: #3bff00;
   height: 8vmin;
 }
@@ -45,7 +44,7 @@ input:focus {
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  height: 41px;
+  height: 50px;
 }
 
 .App-link {
