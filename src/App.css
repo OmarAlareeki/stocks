@@ -3,8 +3,32 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 8vmin;
   pointer-events: none;
+  font-size: 250%;
+  color: #3bff00;
+  position: relative;
+  top: 0px;
+  left: 0px
+}
+
+.header-menu {
+  font-size: 55px;
+  color: #3bff00;
+  height: 8vmin;
+}
+
+input {
+  height: 35px;
+  font-size: large;
+  text-align: center;
+  text-decoration: solid;
+  border-radius: none;
+  border: none
+}
+
+input:focus {
+  outline: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -14,14 +38,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: black;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: raw;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  height: 41px;
 }
 
 .App-link {
