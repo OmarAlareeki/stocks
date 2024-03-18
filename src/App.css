@@ -1,10 +1,9 @@
 .App-logo {
   pointer-events: none;
-  font-size: 40px;
   color: #3bff00;
   position: relative;
   top: 0px;
-  left: 0px
+  left: 0px;
 }
 
 header {
@@ -34,12 +33,8 @@ input:focus {
 
 .App-header {
   background-color: black;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: raw;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* font-size: calc(10px + 2vmin); */
+  color: #3bff00;
   height: 50px;
 }
 
@@ -62,7 +57,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  font-size: 24px;
+  /* font-size: 24px; */
   scrollbar-width: none;
 }
 
@@ -99,4 +94,18 @@ body {
 .app, body::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* Disable scrollbar Chrome/Safari/Webkit */
+}
+
+.css-1jlhf24.ps-rtl {
+  direction: rtl;
+  border-right-width: none;
+  border-left-width: 0px;
+  border-right-style: none;
+  border-left-style: none;
+}
+.css-vj11vy.ps-menu-root{
+  border: none
+}
+section {
+  width: 80%
 }
