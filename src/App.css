@@ -2,13 +2,17 @@
   pointer-events: none;
   color: #3bff00;
   position: relative;
-  top: 0px;
-  left: 0px;
+  top: 5px;
+  left: 2px;
 }
 
 header {
   position: sticky;
   top: 0px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 input {
@@ -42,15 +46,6 @@ input:focus {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 body {
   margin: 0;
   font-family: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", "Figtree", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -67,7 +62,7 @@ h1 {
   font-size: 40px;
 }
 .menu1 {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-top: 20px;
   width: 150px;
   
@@ -108,4 +103,46 @@ body {
 }
 section {
   width: 80%
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.css-1wvake5.ps-collapsed {
+  width: 65px !important;
+  min-width: 65px !important;
+}
+.css-1wvake5{
+  width: 200px !important;
+  min-width: 200px !important;
+}
+/*
+.MenuItem.Mui-selected {
+  color: blue;
+}
+ .css-dip3t8 {
+  width: 65px;
+  min-width: 65px;
+ } */
+
+ /* .css-dip3t8 {
+  background-color: none;
+ } */
+ .css-i4bv87-MuiSvgIcon-root {
+  font-size: 1.3rem !important;
+  margin-right: 15px !important;
+ }
+
+ /* mobile view changes */
+ @media only screen and (max-width: 600px) {
+  .css-i4bv87-MuiSvgIcon-root {
+    font-size: 1rem !important;
+    height: ;
+   }
+  
 }
