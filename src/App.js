@@ -20,12 +20,13 @@ import Newspaper from "@mui/icons-material/Newspaper";
 import Bolt from "@mui/icons-material/Bolt";
 import Star from "@mui/icons-material/Star";
 import Diamond from "@mui/icons-material/Diamond";
+import Apps from "@mui/icons-material/Apps";
 import Logout from "@mui/icons-material/Logout";
 import SsidChart from "@mui/icons-material/SsidChart";
 import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  const Home = () => {
+  const StockSearch = () => {
     return (
       <>
         <h1 className="header">WELCOME TO QUICKPAY</h1>
@@ -34,7 +35,7 @@ function App() {
     );
   };
 
-  const Latest = () => {
+  const LatestChanges = () => {
     return (
       <>
         <h1 className="header"> DASHBOARD PAGE</h1>
@@ -133,7 +134,7 @@ function App() {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setData(data);
       });
   }, []);
@@ -154,6 +155,8 @@ function App() {
           position: "fixed",
           right: "0px",
           fontSize: "12px",
+          boxShadow:
+            "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
         }}
       >
         <Sidebar
@@ -162,11 +165,16 @@ function App() {
           style={{
             border: "none",
             scrollbarWidth: "0px",
+            // width: "200px",
+            // minWidth: "200px"
           }}
         >
           <Menu>
             <MenuItem
-              component={<Link to="/" className="link" />}
+            style={{
+              // width: "300px",
+              // minWidth: "300px"
+            }}
               className="menu1"
               icon={
                 <MenuRoundedIcon
@@ -175,10 +183,19 @@ function App() {
                   }}
                 />
               }
+            ></MenuItem>
+            <MenuItem
+              component={<Link to="stock search" className="link" />}
+              icon={<Apps />}
             >
-              <h2>Home</h2>
+              StockSearch
             </MenuItem>
-            <MenuItem icon={<Bolt />}> Latest Changes</MenuItem>
+            <MenuItem
+              component={<Link to="latest changes" className="link" />}
+              icon={<Bolt />}
+            >
+              Latest Changes
+            </MenuItem>
             <SubMenu
               component={<Link to="quote" className="link" />}
               label="news"
@@ -252,8 +269,8 @@ function App() {
 
       <section>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="latest" element={<Latest />} />
+          <Route path="stock search" element={<StockSearch />} />
+          <Route path="latest changes" element={<LatestChanges />} />
           <Route path="news" element={<News />} />
           <Route path="tradable stocks" element={<TradableStocks />} />
           <Route path="quote" element={<Quote />} />
