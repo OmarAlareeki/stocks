@@ -142,7 +142,9 @@ section {
  @media only screen and (max-width: 600px) {
   .css-i4bv87-MuiSvgIcon-root {
     font-size: 1rem !important;
-    height: ;
+   }
+   .menu1 {
+    margin-bottom: 0px;
    }
   
 }
