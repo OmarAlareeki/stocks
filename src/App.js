@@ -1,7 +1,5 @@
-import { ImCoinDollar } from "react-icons/im";
-import { IoMenu } from "react-icons/io5";
 import "./App.css";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import {
   Sidebar,
   Menu,
@@ -24,126 +22,40 @@ import Apps from "@mui/icons-material/Apps";
 import Logout from "@mui/icons-material/Logout";
 import SsidChart from "@mui/icons-material/SsidChart";
 import { Routes, Route, Link } from "react-router-dom";
+import StockSearch from "../src/pages/StockSearch";
+import LatestChanges from "../src/pages/LatestChanges";
+import News from "../src/pages/News";
+import TradableStocks from "../src/pages/TradableStocks";
+import Quote from "../src/pages/Quote";
+import Search from "../src/pages/Search";
+import Recommended from "../src/pages/Recommended";
+import CompaniesProfile from "../src/pages/CompaniesProfile";
+import Charts from "../src/pages/Charts";
+import Moving from "../src/pages/Moving";
+import SavedTrack from "../src/pages/SavedTrack";
+// import useFetch from "./Hooks/useFetch";
 
 function App() {
-  const StockSearch = () => {
-    return (
-      <>
-        <h1 className="header">WELCOME TO QUICKPAY</h1>
-        <h3>Bank of the free</h3>
-      </>
-    );
-  };
+  // const [data] = useFetch("https://financialmodelingprep.com/api/v3/stock/full/real-time-price?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG");
 
-  const LatestChanges = () => {
-    return (
-      <>
-        <h1 className="header"> DASHBOARD PAGE</h1>
-        <h3>Welcome User</h3>
-      </>
-    );
-  };
 
-  const News = () => {
-    return (
-      <>
-        <h1 className="header">KEEP TRACK OF YOUR SPENDINGS</h1>
-        <h3>Seamless Transactions</h3>
-      </>
-    );
-  };
-
-  const TradableStocks = () => {
-    return (
-      <>
-        <h1 className="header"> DASHBOARD PAGE</h1>
-        <h3>Welcome User</h3>
-      </>
-    );
-  };
-
-  const Quote = () => {
-    return (
-      <>
-        <h1 className="header">KEEP TRACK OF YOUR SPENDINGS</h1>
-        <h3>Seamless Transactions</h3>
-      </>
-    );
-  };
-
-  const Search = () => {
-    return (
-      <>
-        <h1 className="header"> DASHBOARD PAGE</h1>
-        <h3>Welcome User</h3>
-      </>
-    );
-  };
-
-  const Recommended = () => {
-    return (
-      <>
-        <h1 className="header">KEEP TRACK OF YOUR SPENDINGS</h1>
-        <h3>Seamless Transactions</h3>
-      </>
-    );
-  };
-
-  const CompaniesProfile = () => {
-    return (
-      <>
-        <h1 className="header"> DASHBOARD PAGE</h1>
-        <h3>Welcome User</h3>
-      </>
-    );
-  };
-
-  const Charts = () => {
-    return (
-      <>
-        <h1 className="header">KEEP TRACK OF YOUR SPENDINGS</h1>
-        <h3>Seamless Transactions</h3>
-      </>
-    );
-  };
-
-  const Moving = () => {
-    return (
-      <>
-        <h1 className="header"> DASHBOARD PAGE</h1>
-        <h3>Welcome User</h3>
-      </>
-    );
-  };
-
-  const SavedTrack = () => {
-    return (
-      <>
-        <h1 className="header">KEEP TRACK OF YOUR SPENDINGS</h1>
-        <h3>Seamless Transactions</h3>
-      </>
-    );
-  };
-
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetch(
-      "https://financialmodelingprep.com/api/v3/symbol/available-cryptocurrencies?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG"
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        // console.log(data);
-        setData(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(
+  //     "https://financialmodelingprep.com/api/v3/symbol/available-cryptocurrencies?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG"
+  //   )
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+  //       setData(data);
+  //     });
+  // }, []);
 
   const { collapseSidebar } = useProSidebar();
   return (
     <div className="App">
       <header className="App-header">
-        {/* <ImCoinDollar className="App-logo" /> */}
         <span>{<Diamond className="App-logo" />} StockSearch</span>
       </header>
 
@@ -165,16 +77,10 @@ function App() {
           style={{
             border: "none",
             scrollbarWidth: "0px",
-            // width: "200px",
-            // minWidth: "200px"
           }}
         >
           <Menu>
             <MenuItem
-            style={{
-              // width: "300px",
-              // minWidth: "300px"
-            }}
               className="menu1"
               icon={
                 <MenuRoundedIcon
@@ -282,13 +188,29 @@ function App() {
           <Route path="Saved Track" element={<SavedTrack />} />
         </Routes>
       </section>
-      {/* <ul>
-          {data.map((dataItem) => (
-            <li key={data.dataItem} width={100}>
-              {dataItem}
-            </li>
-          ))}
-        </ul> */}
+
+      <>
+        <h1>Welcome to StockSearch</h1>
+      </>
+      {/* <div className="listContainer">
+        <ul className="list">
+          {data &&
+            data.map((item) => {
+              return <li key={item.id}>
+                
+                <span>{item.symbol}</span>
+                <span>{item.price}</span>
+                </li>;
+            })}
+        </ul>
+      </div> */}
+
+      {/* <>
+      {data &&
+        data.map((item) => {
+          return <p key={item.id}>{item.symbol}</p>;
+        })}
+    </> */}
     </div>
   );
 }

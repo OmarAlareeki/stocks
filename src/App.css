@@ -15,7 +15,7 @@ header {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-input {
+/* input {
   height: 35px;
   font-size: large;
   text-align: center;
@@ -23,7 +23,7 @@ input {
   border-radius: none;
   border: none;
   margin-right: 5px;
-}
+} */
 
 input:focus {
   outline: none;
@@ -84,7 +84,7 @@ body {
   margin: 0; /* remove default margin */
   scrollbar-width: none; /* Also needed to disable scrollbar Firefox */
   -ms-overflow-style: none;  /* Disable scrollbar IE 10+ */
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 .app, body::-webkit-scrollbar {
   width: 0px;
@@ -121,23 +121,32 @@ section {
   width: 200px !important;
   min-width: 200px !important;
 }
-/*
-.MenuItem.Mui-selected {
-  color: blue;
-}
- .css-dip3t8 {
-  width: 65px;
-  min-width: 65px;
- } */
-
- /* .css-dip3t8 {
-  background-color: none;
- } */
  .css-i4bv87-MuiSvgIcon-root {
   font-size: 1.3rem !important;
   margin-right: 15px !important;
  }
 
+ .listContainer {
+  width: 90%;
+ }
+
+ .list {
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ .list > li {
+  width: 500px;
+  background: green;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  border-radius: 20px;
+  margin: 5px;
+  color: wheat;
+  font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+ }
  /* mobile view changes */
  @media only screen and (max-width: 600px) {
   .css-i4bv87-MuiSvgIcon-root {
