@@ -125,9 +125,12 @@ section {
   font-size: 1.3rem !important;
   margin-right: 15px !important;
  }
-
+ .css-1wvake5.ps-active{
+  background: black !important
+ }
  .listContainer {
   width: 90%;
+  margin: auto;
  }
 
  .list {
@@ -153,7 +156,13 @@ section {
     font-size: 1rem !important;
    }
    .menu1 {
-    margin-bottom: 0px;
+    margin-bottom: 10px;
+    margin-top: 0px
+
    }
+   .css-1wvake5.ps-collapsed {
+    width: 54px !important;
+    min-width: 54px !important;
+  }
   
 }

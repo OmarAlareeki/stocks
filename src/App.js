@@ -1,10 +1,11 @@
 import "./App.css";
-// import { useEffect, useState } from "react";
+import "./App1.css";
+import { useEffect, useState } from "react";
 import {
   Sidebar,
   Menu,
-  MenuItem,
   SubMenu,
+  MenuItem,
   useProSidebar,
 } from "react-pro-sidebar";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
@@ -24,7 +25,7 @@ import SsidChart from "@mui/icons-material/SsidChart";
 import { Routes, Route, Link } from "react-router-dom";
 import StockSearch from "../src/pages/StockSearch";
 import LatestChanges from "../src/pages/LatestChanges";
-import News from "../src/pages/News";
+// import News from "../src/pages/News";
 import TradableStocks from "../src/pages/TradableStocks";
 import Quote from "../src/pages/Quote";
 import Search from "../src/pages/Search";
@@ -37,7 +38,6 @@ import SavedTrack from "../src/pages/SavedTrack";
 
 function App() {
   // const [data] = useFetch("https://financialmodelingprep.com/api/v3/stock/full/real-time-price?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG");
-
 
   // useEffect(() => {
   //   fetch(
@@ -53,6 +53,11 @@ function App() {
   // }, []);
 
   const { collapseSidebar } = useProSidebar();
+  // const [menuCollapse, setMenuCollapse] = useState(false);
+  // const menuIconClick = () => {
+  //   //condition checking to change state from true to false and vice versa
+  //   menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
+  // };
   return (
     <div className="App">
       <header className="App-header">
@@ -71,14 +76,23 @@ function App() {
             "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
         }}
       >
-        <Sidebar
+        <Sidebar className="app">
+          {/* <Sidebar
           className="app"
           ltr={true}
           style={{
             border: "none",
             scrollbarWidth: "0px",
           }}
-        >
+        > */}
+
+          <div className="logotext">
+            {/* Icon change using menucollapse state */}
+            {/* <p>{menuCollapse ? <MenuRoundedIcon /> : <MenuRoundedIcon />}</p> */}
+          </div>
+          {/* <div className="closemenu" onClick={menuIconClick}> */}
+          {/* changing menu collapse icon on click */}
+          {/* {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />} */}
           <Menu>
             <MenuItem
               className="menu1"
@@ -90,6 +104,7 @@ function App() {
                 />
               }
             ></MenuItem>
+
             <MenuItem
               component={<Link to="stock search" className="link" />}
               icon={<Apps />}
@@ -102,15 +117,15 @@ function App() {
             >
               Latest Changes
             </MenuItem>
-            <SubMenu
-              component={<Link to="quote" className="link" />}
+            {/* <SubMenu
+              component={<Link to="news" className="link" />}
               label="news"
               icon={<Newspaper />}
             >
               <MenuItem> Stocks</MenuItem>
               <MenuItem> Currencies Exchange</MenuItem>
               <MenuItem> cryptocurrencies</MenuItem>
-            </SubMenu>
+            </SubMenu> */}
             <MenuItem
               component={<Link to="tradable stocks" className="link" />}
               icon={<JoinFull />}
@@ -119,7 +134,7 @@ function App() {
             </MenuItem>
             <SubMenu
               component={<Link to="quote" className="link" />}
-              label="Quote"
+              label="quote"
               icon={<RequestQuote />}
             >
               <MenuItem> Full Quote</MenuItem>
@@ -146,8 +161,8 @@ function App() {
               Companies Profile
             </MenuItem>
             <SubMenu
-              component={<Link to="charts" className="link" />}
-              label="Charts"
+              component={<Link to="Charts" className="link" />}
+              label="charts"
               icon={<SsidChart />}
             >
               <MenuItem> Chart Intraday </MenuItem>
@@ -155,7 +170,7 @@ function App() {
             </SubMenu>
             <SubMenu
               component={<Link to="moving" className="link" />}
-              label="Moving"
+              label="moving"
               icon={<Equalizer />}
             >
               <MenuItem> Account </MenuItem>
@@ -177,13 +192,13 @@ function App() {
         <Routes>
           <Route path="stock search" element={<StockSearch />} />
           <Route path="latest changes" element={<LatestChanges />} />
-          <Route path="news" element={<News />} />
+          {/* <Route path="news" element={<News />} /> */}
           <Route path="tradable stocks" element={<TradableStocks />} />
           <Route path="quote" element={<Quote />} />
           <Route path="search" element={<Search />} />
           <Route path="recommended" element={<Recommended />} />
           <Route path="companies profile" element={<CompaniesProfile />} />
-          <Route path="charts" element={<Charts />} />
+          <Route path="Charts" element={<Charts />} />
           <Route path="moving" element={<Moving />} />
           <Route path="Saved Track" element={<SavedTrack />} />
         </Routes>
