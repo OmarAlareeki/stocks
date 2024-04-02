@@ -6,7 +6,7 @@ import ArrowDownward from "@mui/icons-material/ArrowDownward";
 import ArrowUpward from "@mui/icons-material/ArrowUpward";
 
 const Quote = () => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState("GOOGL");
   const { data, isPending } = useFetch(
     "https://financialmodelingprep.com/api/v3/quote/" +
       text +

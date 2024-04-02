@@ -1,5 +1,5 @@
+import React from "react";
 import "./App.css";
-import "./App1.css";
 import { useEffect, useState } from "react";
 import {
   Sidebar,
@@ -34,10 +34,30 @@ import CompaniesProfile from "../src/pages/CompaniesProfile";
 import Charts from "../src/pages/Charts";
 import Moving from "../src/pages/Moving";
 import SavedTrack from "../src/pages/SavedTrack";
-// import useFetch from "./Hooks/useFetch";
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+import useFetch from "./Hooks/useFetch";
 
 function App() {
-  // const [data] = useFetch("https://financialmodelingprep.com/api/v3/stock/full/real-time-price?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG");
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
+
+  const {data, isPending} = useFetch("https://financialmodelingprep.com/api/v3/stock/full/real-time-price?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG");
 
   // useEffect(() => {
   //   fetch(
@@ -190,7 +210,7 @@ function App() {
 
       <section>
         <Routes>
-          <Route path="stock search" element={<StockSearch />} />
+          <Route exact path="stock search" element={<StockSearch data={data}/>} />
           <Route path="latest changes" element={<LatestChanges />} />
           {/* <Route path="news" element={<News />} /> */}
           <Route path="tradable stocks" element={<TradableStocks />} />
@@ -203,29 +223,6 @@ function App() {
           <Route path="Saved Track" element={<SavedTrack />} />
         </Routes>
       </section>
-
-      <>
-        <h1>Welcome to StockSearch</h1>
-      </>
-      {/* <div className="listContainer">
-        <ul className="list">
-          {data &&
-            data.map((item) => {
-              return <li key={item.id}>
-                
-                <span>{item.symbol}</span>
-                <span>{item.price}</span>
-                </li>;
-            })}
-        </ul>
-      </div> */}
-
-      {/* <>
-      {data &&
-        data.map((item) => {
-          return <p key={item.id}>{item.symbol}</p>;
-        })}
-    </> */}
     </div>
   );
 }

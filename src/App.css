@@ -102,7 +102,7 @@ body {
   border: none
 }
 section {
-  width: 80%
+  width: 95%
 }
 
 @keyframes App-logo-spin {
@@ -150,6 +150,29 @@ section {
   font-size: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
  }
+.list > li > * {
+  margin: 15px
+}
+
+
+ .mainList > ol {
+  list-style: none;
+  counter-reset: item;
+}
+.mainList > ol > li {
+  counter-increment: item;
+  margin-bottom: 5px;
+}
+.mainList > ol > li:before {
+  margin-right: 10px;
+  content: counter(item);
+  background: lightblue;
+  border-radius: 100%;
+  color: white;
+  width: 1.2em;
+  text-align: center;
+  display: inline-block;
+}
  /* mobile view changes */
  @media only screen and (max-width: 600px) {
   .css-i4bv87-MuiSvgIcon-root {

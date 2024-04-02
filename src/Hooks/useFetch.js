@@ -62,11 +62,14 @@ export const useFetch = (url) => {
       setIsPending(true);
       const response = await fetch(url);
       const json = await response.json();
-      setData(json);
       setIsPending(false);
+      setData(json); 
     };
     fetchData();
   }, [url]);
+  
   return { data, isPending };
+
 };
- export default useFetch
+
+export default useFetch;
