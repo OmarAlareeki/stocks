@@ -210,7 +210,7 @@ function App() {
 
       <section>
         <Routes>
-          <Route exact path="stock search" element={<StockSearch data={data}/>} />
+          <Route exact path="stock search" element={<StockSearch />} />
           <Route path="latest changes" element={<LatestChanges />} />
           {/* <Route path="news" element={<News />} /> */}
           <Route path="tradable stocks" element={<TradableStocks />} />
