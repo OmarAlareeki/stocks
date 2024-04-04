@@ -19,7 +19,10 @@ const StockSearch = () => {
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
     "https://financialmodelingprep.com/api/v3/profile/GOOGL?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
   );
-  console.log(data)
+  useEffect(() => {
+    setQuery(query)
+  },[query])
+
   return (
     <Container>
       <div
@@ -33,7 +36,6 @@ const StockSearch = () => {
       >
         <h1
           style={{
-            boxShadow: "#f0f0f0 5px 0px 10px 5px",
             padding: "20px",
             background: "rgb(242, 242, 242)",
           }}
@@ -60,7 +62,6 @@ const StockSearch = () => {
               display: "flex",
               flexDirection: "row",
               background: "rgb(242, 242, 242)",
-              boxShadow: "#f0f0f0 5px 0px 10px 5px",
               flexWrap: "wrap"
             }}
           >

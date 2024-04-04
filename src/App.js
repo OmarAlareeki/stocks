@@ -23,61 +23,23 @@ import Apps from "@mui/icons-material/Apps";
 import Logout from "@mui/icons-material/Logout";
 import SsidChart from "@mui/icons-material/SsidChart";
 import { Routes, Route, Link } from "react-router-dom";
-import StockSearch from "../src/pages/StockSearch";
-import LatestChanges from "../src/pages/LatestChanges";
-// import News from "../src/pages/News";
-import TradableStocks from "../src/pages/TradableStocks";
-import Quote from "../src/pages/Quote";
-import Search from "../src/pages/Search";
-import Recommended from "../src/pages/Recommended";
-import CompaniesProfile from "../src/pages/CompaniesProfile";
-import Charts from "../src/pages/Charts";
-import Moving from "../src/pages/Moving";
-import SavedTrack from "../src/pages/SavedTrack";
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
+import StockSearch from "./pages/StockSearch";
+import LatestChanges from "./pages/LatestChanges";
+import News from "../src/pages/News";
+import TradableStocks from "./pages/TradableStocks";
+import Quote from "./pages/Quote";
+import Search from "./pages/Search";
+import Recommended from "./pages/Recommended";
+import CompaniesProfile from "./pages/CompaniesProfile";
+import Charts from "./pages/Charts";
+import Crypto from "./pages/Crypto";
+import SavedTrack from "./pages/SavedTrack";
 import useFetch from "./Hooks/useFetch";
 
 function App() {
-  const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-    },
-  });
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
-
-  const {data, isPending} = useFetch("https://financialmodelingprep.com/api/v3/stock/full/real-time-price?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG");
-
-  // useEffect(() => {
-  //   fetch(
-  //     "https://financialmodelingprep.com/api/v3/symbol/available-cryptocurrencies?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG"
-  //   )
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //       setData(data);
-  //     });
-  // }, []);
 
   const { collapseSidebar } = useProSidebar();
-  // const [menuCollapse, setMenuCollapse] = useState(false);
-  // const menuIconClick = () => {
-  //   //condition checking to change state from true to false and vice versa
-  //   menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-  // };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -126,7 +88,7 @@ function App() {
             ></MenuItem>
 
             <MenuItem
-              component={<Link to="stock search" className="link" />}
+              component={<Link to="/stock Search" className="link" />}
               icon={<Apps />}
             >
               StockSearch
@@ -137,15 +99,14 @@ function App() {
             >
               Latest Changes
             </MenuItem>
-            {/* <SubMenu
+            <SubMenu
               component={<Link to="news" className="link" />}
               label="news"
               icon={<Newspaper />}
             >
               <MenuItem> Stocks</MenuItem>
-              <MenuItem> Currencies Exchange</MenuItem>
               <MenuItem> cryptocurrencies</MenuItem>
-            </SubMenu> */}
+            </SubMenu>
             <MenuItem
               component={<Link to="tradable stocks" className="link" />}
               icon={<JoinFull />}
@@ -189,13 +150,13 @@ function App() {
               <MenuItem> Daily Chart</MenuItem>
             </SubMenu>
             <SubMenu
-              component={<Link to="moving" className="link" />}
-              label="moving"
+              component={<Link to="crypto" className="link" />}
+              label="crypto"
               icon={<Equalizer />}
             >
-              <MenuItem> Account </MenuItem>
-              <MenuItem> Privacy </MenuItem>
-              <MenuItem> Notifications </MenuItem>
+              <MenuItem> Full Crypto Quote </MenuItem>
+              <MenuItem> cryptocurrencies Intraday </MenuItem>
+              <MenuItem> cryptocurrencies Daily </MenuItem>
             </SubMenu>
             <MenuItem
               component={<Link to="saved track" className="link" />}
@@ -210,17 +171,17 @@ function App() {
 
       <section>
         <Routes>
-          <Route exact path="stock search" element={<StockSearch data={data}/>} />
-          <Route path="latest changes" element={<LatestChanges />} />
-          {/* <Route path="news" element={<News />} /> */}
+          <Route path="stocksearch" element={<StockSearch />} />
+          <Route path="latestchanges" element={<LatestChanges />} />
+          <Route path="news" element={<News />} />
           <Route path="tradable stocks" element={<TradableStocks />} />
           <Route path="quote" element={<Quote />} />
           <Route path="search" element={<Search />} />
           <Route path="recommended" element={<Recommended />} />
           <Route path="companies profile" element={<CompaniesProfile />} />
-          <Route path="Charts" element={<Charts />} />
-          <Route path="moving" element={<Moving />} />
-          <Route path="Saved Track" element={<SavedTrack />} />
+          <Route path="charts" element={<Charts />} />
+          <Route path="crypto" element={<Crypto />} />
+          <Route path="savedtrack" element={<SavedTrack />} />
         </Routes>
       </section>
     </div>
