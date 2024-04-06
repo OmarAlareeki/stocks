@@ -20,64 +20,30 @@ import Bolt from "@mui/icons-material/Bolt";
 import Star from "@mui/icons-material/Star";
 import Diamond from "@mui/icons-material/Diamond";
 import Apps from "@mui/icons-material/Apps";
-import Logout from "@mui/icons-material/Logout";
+import Login from "@mui/icons-material/Login";
 import SsidChart from "@mui/icons-material/SsidChart";
 import { Routes, Route, Link } from "react-router-dom";
 import StockSearch from "../src/pages/StockSearch";
 import LatestChanges from "../src/pages/LatestChanges";
-// import News from "../src/pages/News";
+import News from "../src/pages/News";
 import TradableStocks from "../src/pages/TradableStocks";
 import Quote from "../src/pages/Quote";
 import Search from "../src/pages/Search";
 import Recommended from "../src/pages/Recommended";
 import CompaniesProfile from "../src/pages/CompaniesProfile";
 import Charts from "../src/pages/Charts";
-import Moving from "../src/pages/Moving";
+import Crypto from "./pages/Crypto";
 import SavedTrack from "../src/pages/SavedTrack";
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-
-import useFetch from "./Hooks/useFetch";
+import Profile from "../src/pages/Profile";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { auth } from "../src/auth/auth";
 
 function App() {
-  const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-    },
-  });
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
 
-  const {data, isPending} = useFetch("https://financialmodelingprep.com/api/v3/stock/full/real-time-price?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG");
-
-  // useEffect(() => {
-  //   fetch(
-  //     "https://financialmodelingprep.com/api/v3/symbol/available-cryptocurrencies?apikey=5JbedfpFQSiCRespheqYl9NO9BJHeHsG"
-  //   )
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //       setData(data);
-  //     });
-  // }, []);
 
   const { collapseSidebar } = useProSidebar();
-  // const [menuCollapse, setMenuCollapse] = useState(false);
-  // const menuIconClick = () => {
-  //   //condition checking to change state from true to false and vice versa
-  //   menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-  // };
   return (
     <div className="App">
       <header className="App-header">
@@ -97,22 +63,6 @@ function App() {
         }}
       >
         <Sidebar className="app">
-          {/* <Sidebar
-          className="app"
-          ltr={true}
-          style={{
-            border: "none",
-            scrollbarWidth: "0px",
-          }}
-        > */}
-
-          <div className="logotext">
-            {/* Icon change using menucollapse state */}
-            {/* <p>{menuCollapse ? <MenuRoundedIcon /> : <MenuRoundedIcon />}</p> */}
-          </div>
-          {/* <div className="closemenu" onClick={menuIconClick}> */}
-          {/* changing menu collapse icon on click */}
-          {/* {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />} */}
           <Menu>
             <MenuItem
               className="menu1"
@@ -124,7 +74,7 @@ function App() {
                 />
               }
             ></MenuItem>
-
+            
             <MenuItem
               component={<Link to="stock search" className="link" />}
               icon={<Apps />}
@@ -137,15 +87,15 @@ function App() {
             >
               Latest Changes
             </MenuItem>
-            {/* <SubMenu
+            <SubMenu
               component={<Link to="news" className="link" />}
-              label="news"
+              label="News"
               icon={<Newspaper />}
             >
               <MenuItem> Stocks</MenuItem>
               <MenuItem> Currencies Exchange</MenuItem>
               <MenuItem> cryptocurrencies</MenuItem>
-            </SubMenu> */}
+            </SubMenu>
             <MenuItem
               component={<Link to="tradable stocks" className="link" />}
               icon={<JoinFull />}
@@ -189,8 +139,8 @@ function App() {
               <MenuItem> Daily Chart</MenuItem>
             </SubMenu>
             <SubMenu
-              component={<Link to="moving" className="link" />}
-              label="moving"
+              component={<Link to="crypto" className="link" />}
+              label="Crypto"
               icon={<Equalizer />}
             >
               <MenuItem> Account </MenuItem>
@@ -203,24 +153,31 @@ function App() {
             >
               Saved Track
             </MenuItem>
-            <MenuItem icon={<Logout />}> Logout </MenuItem>
+            <MenuItem
+              component={<Link to="profile" className="link" />}
+              icon={<Login />}
+            >
+              Profile
+            </MenuItem>
           </Menu>
         </Sidebar>
       </div>
 
       <section>
         <Routes>
-          <Route exact path="stock search" element={<StockSearch />} />
+          {/* <Route index element={<StockSearch />} /> */}
+          <Route path="stock search" element={<StockSearch />} />
           <Route path="latest changes" element={<LatestChanges />} />
-          {/* <Route path="news" element={<News />} /> */}
+          <Route path="news" element={<News />} />
           <Route path="tradable stocks" element={<TradableStocks />} />
           <Route path="quote" element={<Quote />} />
           <Route path="search" element={<Search />} />
           <Route path="recommended" element={<Recommended />} />
           <Route path="companies profile" element={<CompaniesProfile />} />
           <Route path="Charts" element={<Charts />} />
-          <Route path="moving" element={<Moving />} />
-          <Route path="Saved Track" element={<SavedTrack />} />
+          <Route path="Crypto" element={<Crypto />} />
+          <Route path="saved track" element={<SavedTrack />} />
+          <Route path="profile" element={<Profile />} />
         </Routes>
       </section>
     </div>

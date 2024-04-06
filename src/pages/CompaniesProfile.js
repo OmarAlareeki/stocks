@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useFetch from "../Hooks/useFetch";
+import Container from "@mui/material/Container";
 
 const CompaniesProfile = () => {
   const [imageUrl, setImageUrl] = useState(null);
@@ -13,29 +14,30 @@ const CompaniesProfile = () => {
 
   return (
     <>
-      <h1 className="header"> Companies Profile</h1>
-      <h3>Welcome User</h3>
-      {isPending && <div>Loading....</div>}
-      {data &&
-        data.map((item) => {
-          return (
-            <ul>
-              <li>{item.symbol}</li>
-              <li>{item.ceo}</li>
-              <li>{item.companyName}</li>
-              <li>{item.country}</li>
-              <li>{item.description}</li>
-              <li>{item.exchangeShortName}</li>
-              <li>{item.industry}</li>
-              <li>{item.ipoDate}</li>
-              <li>{item.mktCap}</li>
-              <li>{item.price}</li>
-              <li>{item.website}</li>
-              <img src={item.image} />
-            </ul>
-          );
-        })}
-      {/* {data[0].image && <image src={data[0].image} alt="logoImage" width={300} height={300}/>} */}
+      <Container>
+        <h1 className="header"> Companies Profile</h1>
+        <h3>Welcome User</h3>
+        {isPending && <div>Loading....</div>}
+        {data &&
+          data.map((item) => {
+            return (
+              <ul>
+                <li>{item.symbol}</li>
+                <li>{item.ceo}</li>
+                <li>{item.companyName}</li>
+                <li>{item.country}</li>
+                <li>{item.description}</li>
+                <li>{item.exchangeShortName}</li>
+                <li>{item.industry}</li>
+                <li>{item.ipoDate}</li>
+                <li>{item.mktCap}</li>
+                <li>{item.price}</li>
+                <li>{item.website}</li>
+                <img src={item.image} />
+              </ul>
+            );
+          })}
+      </Container>
     </>
   );
 };

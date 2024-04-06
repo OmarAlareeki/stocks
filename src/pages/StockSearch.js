@@ -19,7 +19,7 @@ const StockSearch = () => {
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
     "https://financialmodelingprep.com/api/v3/profile/GOOGL?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
   );
-  console.log(data)
+  // console.log(data)
   return (
     <Container>
       <div

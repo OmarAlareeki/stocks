@@ -9,20 +9,10 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 
 const Search = () => {
-  // const [text, setText] = useState("");
-  // const { data, isPending } = useFetch("https://financialmodelingprep.com/api/v3/quote/" +
-  // text +
-  // "?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L");
   const [query, setQuery] = useState("GOOGL");
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
     "https://financialmodelingprep.com/api/v3/quote/GOOGL?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
   );
-
-  // const handleChange = (e) => {
-  //   const { value } = e.target;
-  //   setText(value);
-  // };
-  // console.log(data)
 
   return (
     <Container>
