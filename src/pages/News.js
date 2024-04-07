@@ -1,12 +1,25 @@
 import { useEffect, useState } from "react";
 import useDataApi from "../Hooks/axisFetch";
 import Container from "@mui/material/Container";
+import PaginationP from "../components/PaginationP";
+
+
 const News = () => {
-//   const [query, setQuery] = useState("GOOGL");
+  //   const [query, setQuery] = useState("GOOGL");
+  const apiUrl = `https://financialmodelingprep.com/api/v3/fmp/articles`;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    "https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=10&apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+    `${apiUrl}?page=${currentPage}&size=${itemsPerPage}&apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L`
   );
-  console.log(data)
+  console.log(data.content)
+
+  useEffect(() => {
+    doFetch(
+      `${apiUrl}?page=${currentPage}&size=${itemsPerPage}&apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L`
+    );
+  }, [currentPage, itemsPerPage]);
+
 
   return (
     <>
@@ -14,27 +27,37 @@ const News = () => {
         <h1 className="header"> NEWS PAGE</h1>
         <h3>You can search by company name, compnay stock shortcut</h3>
 
-        <form
-          onSubmit={(event) => {
-            doFetch(
-                "https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=10&apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
-            );
-
-            event.preventDefault();
-          }}
-        >
-          {/* <SearchInput
-            type="text"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-          />
-          <Button variant="contained" size="small" type="submit">
-            Search
-          </Button> */}
-        
-        
-        
-        </form>
+        <ul>
+          {isError && <div>Something went wrong ...</div>}
+          {isLoading ? (
+            <div>Loading ...</div>
+          ) : (
+            <>
+              {data &&
+                data.content.map((item) => {
+                  return (
+                    <li key={item.id}>
+                      <a href={item.link}>{item.title}</a>
+                      <>
+                        {/* {item.change < 0 ? (
+                        <ArrowDownward style={{ color: "red" }} />
+                      ) : (
+                        <ArrowUpward />
+                      )} */}
+                      </>
+                    </li>
+                  );
+                })}
+            </>
+          )}
+        </ul>
+        <div>
+            <PaginationP
+                nPages={currentPage + 2}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
+        </div>
       </Container>
     </>
   );
