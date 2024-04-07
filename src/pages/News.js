@@ -19,12 +19,12 @@ const News = () => {
       `${apiUrl}?page=${currentPage}&size=${itemsPerPage}&apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L`
     );
   }, [currentPage, itemsPerPage]);
-
+  
 
   return (
     <>
       <Container>
-        <h1 className="header"> NEWS PAGE</h1>
+        <h1 className="header"> NEWS</h1>
         <h3>You can search by company name, compnay stock shortcut</h3>
 
         <ul>
