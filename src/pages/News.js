@@ -1,20 +1,65 @@
+import { useEffect, useState } from "react";
 import useDataApi from "../Hooks/axisFetch";
-import { useState, useEffect } from "react";
+import Container from "@mui/material/Container";
+import PaginationP from "../components/PaginationP";
+
 
 const News = () => {
+  //   const [query, setQuery] = useState("GOOGL");
+  const apiUrl = `https://financialmodelingprep.com/api/v3/fmp/articles`;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [{ data, isLoading, isError }, doFetch] = useDataApi(
+    `${apiUrl}?page=${currentPage}&size=${itemsPerPage}&apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L`
+  );
+  console.log(data.content)
 
-  const url = "https://newsapi.org/v2/everything?q=tesla&from=2024-02-24&sortBy=publishedAt&apiKey=ca794f1f31034e9285dbfe50f138b074";
-  const [query, setQuery] = useState("GOOGL");
-  const [{ data, isLoading, isError }, doFetch] = useDataApi("https://financialmodelingprep.com/api/v3/profile/")
+  useEffect(() => {
+    doFetch(
+      `${apiUrl}?page=${currentPage}&size=${itemsPerPage}&apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L`
+    );
+  }, [currentPage, itemsPerPage]);
 
-  console.log(data)
 
   return (
-    <div className="listContainer">
+    <>
+      <Container>
+        <h1 className="header"> NEWS PAGE</h1>
+        <h3>You can search by company name, compnay stock shortcut</h3>
 
-      <h1 className="header">KEEP TRACK OF YOUR SPENDINGS</h1>
-      <h3>Seamless Transactions</h3>
-    </div>
+        <ul>
+          {isError && <div>Something went wrong ...</div>}
+          {isLoading ? (
+            <div>Loading ...</div>
+          ) : (
+            <>
+              {data &&
+                data.content.map((item) => {
+                  return (
+                    <li key={item.id}>
+                      <a href={item.link}>{item.title}</a>
+                      <>
+                        {/* {item.change < 0 ? (
+                        <ArrowDownward style={{ color: "red" }} />
+                      ) : (
+                        <ArrowUpward />
+                      )} */}
+                      </>
+                    </li>
+                  );
+                })}
+            </>
+          )}
+        </ul>
+        <div>
+            <PaginationP
+                nPages={currentPage + 2}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+              />
+        </div>
+      </Container>
+    </>
   );
 };
 export default News;

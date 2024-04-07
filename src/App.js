@@ -20,26 +20,30 @@ import Bolt from "@mui/icons-material/Bolt";
 import Star from "@mui/icons-material/Star";
 import Diamond from "@mui/icons-material/Diamond";
 import Apps from "@mui/icons-material/Apps";
-import Logout from "@mui/icons-material/Logout";
+import Login from "@mui/icons-material/Login";
 import SsidChart from "@mui/icons-material/SsidChart";
 import { Routes, Route, Link } from "react-router-dom";
-import StockSearch from "./pages/StockSearch";
-import LatestChanges from "./pages/LatestChanges";
+import StockSearch from "../src/pages/StockSearch";
+import LatestChanges from "../src/pages/LatestChanges";
 import News from "../src/pages/News";
-import TradableStocks from "./pages/TradableStocks";
-import Quote from "./pages/Quote";
-import Search from "./pages/Search";
-import Recommended from "./pages/Recommended";
-import CompaniesProfile from "./pages/CompaniesProfile";
-import Charts from "./pages/Charts";
+import TradableStocks from "../src/pages/TradableStocks";
+import Quote from "../src/pages/Quote";
+import Search from "../src/pages/Search";
+import Recommended from "../src/pages/Recommended";
+import CompaniesProfile from "../src/pages/CompaniesProfile";
+import Charts from "../src/pages/Charts";
 import Crypto from "./pages/Crypto";
-import SavedTrack from "./pages/SavedTrack";
-import useFetch from "./Hooks/useFetch";
+import SavedTrack from "../src/pages/SavedTrack";
+import Profile from "../src/pages/Profile";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { auth } from "../src/auth/auth";
 
 function App() {
 
-  const { collapseSidebar } = useProSidebar();
 
+  const { collapseSidebar } = useProSidebar();
   return (
     <div className="App">
       <header className="App-header">
@@ -59,22 +63,6 @@ function App() {
         }}
       >
         <Sidebar className="app">
-          {/* <Sidebar
-          className="app"
-          ltr={true}
-          style={{
-            border: "none",
-            scrollbarWidth: "0px",
-          }}
-        > */}
-
-          <div className="logotext">
-            {/* Icon change using menucollapse state */}
-            {/* <p>{menuCollapse ? <MenuRoundedIcon /> : <MenuRoundedIcon />}</p> */}
-          </div>
-          {/* <div className="closemenu" onClick={menuIconClick}> */}
-          {/* changing menu collapse icon on click */}
-          {/* {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />} */}
           <Menu>
             <MenuItem
               className="menu1"
@@ -86,9 +74,9 @@ function App() {
                 />
               }
             ></MenuItem>
-
+            
             <MenuItem
-              component={<Link to="/stock Search" className="link" />}
+              component={<Link to="stock search" className="link" />}
               icon={<Apps />}
             >
               StockSearch
@@ -101,10 +89,11 @@ function App() {
             </MenuItem>
             <SubMenu
               component={<Link to="news" className="link" />}
-              label="news"
+              label="News"
               icon={<Newspaper />}
             >
               <MenuItem> Stocks</MenuItem>
+              <MenuItem> Currencies Exchange</MenuItem>
               <MenuItem> cryptocurrencies</MenuItem>
             </SubMenu>
             <MenuItem
@@ -151,12 +140,12 @@ function App() {
             </SubMenu>
             <SubMenu
               component={<Link to="crypto" className="link" />}
-              label="crypto"
+              label="Crypto"
               icon={<Equalizer />}
             >
-              <MenuItem> Full Crypto Quote </MenuItem>
-              <MenuItem> cryptocurrencies Intraday </MenuItem>
-              <MenuItem> cryptocurrencies Daily </MenuItem>
+              <MenuItem> Account </MenuItem>
+              <MenuItem> Privacy </MenuItem>
+              <MenuItem> Notifications </MenuItem>
             </SubMenu>
             <MenuItem
               component={<Link to="saved track" className="link" />}
@@ -164,24 +153,31 @@ function App() {
             >
               Saved Track
             </MenuItem>
-            <MenuItem icon={<Logout />}> Logout </MenuItem>
+            <MenuItem
+              component={<Link to="profile" className="link" />}
+              icon={<Login />}
+            >
+              Profile
+            </MenuItem>
           </Menu>
         </Sidebar>
       </div>
 
       <section>
         <Routes>
-          <Route path="stocksearch" element={<StockSearch />} />
-          <Route path="latestchanges" element={<LatestChanges />} />
+          {/* <Route index element={<StockSearch />} /> */}
+          <Route path="stock search" element={<StockSearch />} />
+          <Route path="latest changes" element={<LatestChanges />} />
           <Route path="news" element={<News />} />
           <Route path="tradable stocks" element={<TradableStocks />} />
           <Route path="quote" element={<Quote />} />
           <Route path="search" element={<Search />} />
           <Route path="recommended" element={<Recommended />} />
           <Route path="companies profile" element={<CompaniesProfile />} />
-          <Route path="charts" element={<Charts />} />
-          <Route path="crypto" element={<Crypto />} />
-          <Route path="savedtrack" element={<SavedTrack />} />
+          <Route path="Charts" element={<Charts />} />
+          <Route path="Crypto" element={<Crypto />} />
+          <Route path="saved track" element={<SavedTrack />} />
+          <Route path="profile" element={<Profile />} />
         </Routes>
       </section>
     </div>
