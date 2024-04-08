@@ -107,7 +107,8 @@ body::-webkit-scrollbar {
   border: none;
 }
 section {
-  width: 95%;
+  width: 88%;
+
 }
 
 @keyframes App-logo-spin {
@@ -127,7 +128,6 @@ section {
   min-width: 200px !important;
 }
 .css-i4bv87-MuiSvgIcon-root {
-  font-size: 1.3rem !important;
   margin-right: 15px !important;
 }
 .css-1wvake5.ps-active {

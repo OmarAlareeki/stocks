@@ -36,7 +36,7 @@ const StockSearch = () => {
             background: "rgb(242, 242, 242)",
           }}
         >
-         Welcome to <Diamond />  StockSearch
+          Welcome to <Diamond /> StockSearch
         </h1>
         {/* <h2>
           It is one of the best GateWays to find the best recommendations where
@@ -58,7 +58,7 @@ const StockSearch = () => {
               display: "flex",
               flexDirection: "row",
               background: "rgb(242, 242, 242)",
-              flexWrap: "wrap"
+              flexWrap: "wrap",
             }}
           >
             {isError && <div>Something went wrong ...</div>}
@@ -69,13 +69,25 @@ const StockSearch = () => {
                 {data &&
                   data.map((item) => {
                     return (
-                      <li key={item.id}   style={{ margin: "20px", }}>
-                        <img
-                          src={item.image}
-                          width={80}
-                          height={80}
-                        />
-                        <span style={item.changes < 0 ? { margin: "20px", color: "red"} :{ margin: "20px", color: "green"} }>{item.price}</span>
+                      <li key={item.id} style={{ margin: "20px" }}>
+                        <img src={item.image} width={20} height={20} />
+                        <span
+                          style={
+                            item.changes < 0
+                              ? {
+                                  fontSize: "12px",
+                                  margin: "20px",
+                                  color: "red",
+                                }
+                              : {
+                                  fontSize: "12px",
+                                  margin: "20px",
+                                  color: "green",
+                                }
+                          }
+                        >
+                          {"$" + item.price}
+                        </span>
                       </li>
                     );
                   })}

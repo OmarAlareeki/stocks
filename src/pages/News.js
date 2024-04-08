@@ -12,7 +12,6 @@ const News = () => {
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
     `${apiUrl}?page=${currentPage}&size=${itemsPerPage}&apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L`
   );
-  console.log(data.content)
 
   useEffect(() => {
     doFetch(
