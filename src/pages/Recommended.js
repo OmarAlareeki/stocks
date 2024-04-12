@@ -9,10 +9,11 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 
 const Recommended = () => {
-  const [query, setQuery] = useState("GOOGL");
+  const [query, setQuery] = useState(3);
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
     "https://financialmodelingprep.com/api/v3/symbol/NASDAQ?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
   );
+  console.log(data)
 
   return (
     <Container>
@@ -20,7 +21,7 @@ const Recommended = () => {
       <h3>ALL STOCKS LISTED BELOW THEIR CHANGE IS HIGHER THAN 3</h3>
 
       <form
-        onLoad={(event) => {
+        onSubmit={(event) => {
           doFetch(
             "https://financialmodelingprep.com/api/v3/symbol/NASDAQ?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
           );
@@ -35,12 +36,6 @@ const Recommended = () => {
         />
         <Button variant="contained" size = "small" type="submit">Search</Button>
       </form>
-
-      {/* <SearchInput
-        type="text"
-        value={text}
-        onChange={handleChange}
-      /> */}
 
       <div className="listContainer">
         <ul className="list">

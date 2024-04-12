@@ -1,78 +1,69 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./auth";
-import GoogleSignUp from "./GoogleSignUp";
+import { Link, useNavigate } from "react-router-dom";
+// import { Form, Alert } from "react-bootstrap";
+import Button from "@mui/material/Button";
+import Box from '@mui/material/Box';
+import TextField from "@mui/material/TextField";
+import { useUserAuth } from "./UserAuthContent";
+import Container from "@mui/material/Container";
 
 const Signup = () => {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const [password, setPassword] = useState("");
+  const { signUp } = useUserAuth();
+  let navigate = useNavigate();
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        navigate("/login");
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
-      });
+    setError("");
+    try {
+      await signUp(email, password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
-    <main>
-      <section>
-        <div>
-          <div>
-            <h1> FocusApp </h1>
-            <form>
-              <div>
-                <label htmlFor="email-address">Email address</label>
-                <input
-                  type="email"
-                  label="Email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  placeholder="Email address"
-                />
-              </div>
+    <Container>
+      <div className="p-4 box">
+        <h1 className="header">Sign up</h1>
 
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  label="Create password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  placeholder="Password"
-                />
-              </div>
+        {error && <span variant="danger">{error}</span>}
 
-              <button type="submit" onClick={onSubmit}>
-                Sign up
-              </button>
-            </form>
+        <Box 
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleSubmit}>
+          <TextField
+            variant="outlined"
+            type="email"
+            label="Email address"
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-            <p>
-              Already have an account? <NavLink to="/login">Sign in</NavLink>
-            </p>
+          <TextField
+            type="password"
+            label="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <div className="d-grid gap-2">
+            <Button variant="contained" type="Submit">
+              Sign up
+            </Button>
           </div>
-          <GoogleSignUp />
-        </div>
-      </section>
-    </main>
+        </Box>
+      </div>
+      <h3 className="header">
+        Already have an account? <Link to="/login">Log In</Link>
+      </h3>
+    </Container>
   );
 };
 

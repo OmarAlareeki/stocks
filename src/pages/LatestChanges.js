@@ -1,6 +1,12 @@
 import Container from "@mui/material/Container";
+import { useState } from "react";
+import useDataApi from "../Hooks/axisFetch";
 
 const LatestChanges = () => {
+  const [query, setQuery] = useState("GOOGL");
+  const [{ data, isLoading, isError }, doFetch] = useDataApi(
+    "https://financialmodelingprep.com/api/v3/quote/GOOGL?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+  );
   return (
     <>
       <Container>

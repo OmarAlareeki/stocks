@@ -14,13 +14,13 @@ import Info from "@mui/icons-material/Info";
 import RequestQuote from "@mui/icons-material/RequestQuote";
 import Radar from "@mui/icons-material/Radar";
 import JoinFull from "@mui/icons-material/JoinFull";
-import Equalizer from "@mui/icons-material/Equalizer";
+import CurrencyBitcoin from "@mui/icons-material/CurrencyBitcoin";
 import Newspaper from "@mui/icons-material/Newspaper";
 import Bolt from "@mui/icons-material/Bolt";
 import Star from "@mui/icons-material/Star";
 import Diamond from "@mui/icons-material/Diamond";
 import Apps from "@mui/icons-material/Apps";
-import Login from "@mui/icons-material/Login";
+import Person from "@mui/icons-material/Person";
 import SsidChart from "@mui/icons-material/SsidChart";
 import { Routes, Route, Link } from "react-router-dom";
 import StockSearch from "../src/pages/StockSearch";
@@ -35,15 +35,15 @@ import Charts from "../src/pages/Charts";
 import Crypto from "./pages/Crypto";
 import SavedTrack from "../src/pages/SavedTrack";
 import Profile from "../src/pages/Profile";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { auth } from "../src/auth/auth";
+import Login from "./auth/Login";
+import Signup from "./auth/SignUp";
+import ProtectedRoute from "../src/auth/ProtectedRoute";
+import { UserAuthContextProvider } from "../src/auth/UserAuthContent";
+import Home from "../src/pages/Home";
 
 function App() {
-
-
   const { collapseSidebar } = useProSidebar();
+
   return (
     <div className="App">
       <header className="App-header">
@@ -74,10 +74,10 @@ function App() {
                 />
               }
             ></MenuItem>
-            
+
             <MenuItem
               component={<Link to="stock search" className="link" />}
-              icon={<Apps />}
+              icon={<Apps className="icon-ready" />}
             >
               StockSearch
             </MenuItem>
@@ -90,7 +90,7 @@ function App() {
             <SubMenu
               component={<Link to="news" className="link" />}
               label="News"
-              icon={<Newspaper />}
+              icon={<Newspaper className="icon-ready" />}
             >
               <MenuItem> Stocks</MenuItem>
               <MenuItem> Currencies Exchange</MenuItem>
@@ -98,14 +98,14 @@ function App() {
             </SubMenu>
             <MenuItem
               component={<Link to="tradable stocks" className="link" />}
-              icon={<JoinFull />}
+              icon={<JoinFull className="icon-ready" />}
             >
               Tradable Stocks
             </MenuItem>
             <SubMenu
               component={<Link to="quote" className="link" />}
               label="quote"
-              icon={<RequestQuote />}
+              icon={<RequestQuote className="icon-ready" />}
             >
               <MenuItem> Full Quote</MenuItem>
               <MenuItem> Simple Quote</MenuItem>
@@ -113,7 +113,7 @@ function App() {
 
             <MenuItem
               component={<Link to="search" className="link" />}
-              icon={<Radar />}
+              icon={<Radar className="icon-ready" />}
             >
               Search
             </MenuItem>
@@ -126,7 +126,7 @@ function App() {
             </MenuItem>
             <MenuItem
               component={<Link to="companies profile" className="link" />}
-              icon={<Info />}
+              icon={<Info className="icon-ready" />}
             >
               Companies Profile
             </MenuItem>
@@ -141,7 +141,7 @@ function App() {
             <SubMenu
               component={<Link to="crypto" className="link" />}
               label="Crypto"
-              icon={<Equalizer />}
+              icon={<CurrencyBitcoin className="icon-ready" />}
             >
               <MenuItem> Account </MenuItem>
               <MenuItem> Privacy </MenuItem>
@@ -155,7 +155,7 @@ function App() {
             </MenuItem>
             <MenuItem
               component={<Link to="profile" className="link" />}
-              icon={<Login />}
+              icon={<Person />}
             >
               Profile
             </MenuItem>
@@ -164,8 +164,9 @@ function App() {
       </div>
 
       <section>
+      <UserAuthContextProvider>
         <Routes>
-          {/* <Route index element={<StockSearch />} /> */}
+          <Route index element={<Home />} style={{width: "100%"}}/>
           <Route path="stock search" element={<StockSearch />} />
           <Route path="latest changes" element={<LatestChanges />} />
           <Route path="news" element={<News />} />
@@ -177,8 +178,19 @@ function App() {
           <Route path="Charts" element={<Charts />} />
           <Route path="Crypto" element={<Crypto />} />
           <Route path="saved track" element={<SavedTrack />} />
-          <Route path="profile" element={<Profile />} />
+          {/* <Route path="profile" element={<Profile />} /> */}
+          <Route
+              path="profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
         </Routes>
+        </UserAuthContextProvider>
       </section>
     </div>
   );
