@@ -43,14 +43,6 @@ const TradableStocks = () => {
             flexDirection: "column",
           }}
         >
-          <h1
-            style={{
-              padding: "20px",
-              background: "rgb(242, 242, 242)",
-            }}
-          >
-            Welcome to <Diamond /> StockSearch
-          </h1>
           {/* <h2>
           It is one of the best GateWays to find the best recommendations where
           to invest.

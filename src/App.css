@@ -110,6 +110,9 @@ section {
   width: 88%;
 
 }
+.icon-ready {
+  color: green
+}
 
 @keyframes App-logo-spin {
   from {
@@ -158,21 +161,38 @@ section {
 .list > li > * {
   margin: 15px;
 }
+h5{
+  color: green
+}
 
 .mainList > ol {
   list-style: none;
   counter-reset: item;
+  font-size: xx-large;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .mainList > ol > li {
   counter-increment: item;
-  margin-bottom: 5px;
+  margin: 5px;
+  width: 250px;
+  background: #fff8f8;
+  text-align: center;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: rgba(255, 255, 255, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  font-weight: 1;
+  font-size: 20px
+
 }
+
 .mainList > ol > li:before {
   margin-right: 10px;
   content: counter(item);
-  background: lightblue;
-  border-radius: 100%;
-  color: white;
+  background: rgb(230, 235, 236);
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
   width: 1.2em;
   text-align: center;
   display: inline-block;

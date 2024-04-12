@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useDataApi from "../Hooks/axisFetch";
 import Container from "@mui/material/Container";
-import PaginationP from "../components/PaginationP";
+import Pagination from "../components/Pagination";
 
 
 const News = () => {
@@ -51,7 +51,7 @@ const News = () => {
           )}
         </ul>
         <div>
-            <PaginationP
+            <Pagination
                 nPages={currentPage + 2}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
