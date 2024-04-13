@@ -9,8 +9,11 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { auth, db } from "../auth/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useUserAuth } from "../auth/UserAuthContent";
+import Star from "@mui/icons-material/Star";
 
 const Search = () => {
+  const { user } = useUserAuth(auth);
   const [query, setQuery] = useState([]);
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
     "https://financialmodelingprep.com/api/v3/quote/BTCUSD?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
@@ -22,7 +25,7 @@ const Search = () => {
       alert("Enter valid message");
       return;
     }
-    const { uid, displayName, } = auth.currentUser;
+    const { uid, displayName } = auth.currentUser;
     await addDoc(collection(db, "stocksSymbol"), {
       text: query,
       name: displayName,
@@ -85,7 +88,16 @@ const Search = () => {
                           <ArrowUpward />
                         )}
                       </>
-                      <button onClick={(event) => sendSymbol(event)}>Save</button>
+                      {!user ? (
+                        ""
+                      ) : (
+                        <button
+                          style={{ border: "none", background: "none", color: "yellow" }}
+                          onClick={(event) => sendSymbol(event)}
+                        >
+                          <Star />
+                        </button>
+                      )}
                     </li>
                   );
                 })}
