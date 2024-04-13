@@ -7,12 +7,30 @@ import ArrowDownward from "@mui/icons-material/ArrowDownward";
 import ArrowUpward from "@mui/icons-material/ArrowUpward";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import { auth, db } from "../auth/auth";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const Search = () => {
-  const [query, setQuery] = useState("BTCUSD");
+  const [query, setQuery] = useState([]);
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
     "https://financialmodelingprep.com/api/v3/quote/BTCUSD?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
   );
+
+  const sendSymbol = async (event) => {
+    event.preventDefault();
+    if (query.trim() === "") {
+      alert("Enter valid message");
+      return;
+    }
+    const { uid, displayName, } = auth.currentUser;
+    await addDoc(collection(db, "stocksSymbol"), {
+      text: query,
+      name: displayName,
+      createdAt: serverTimestamp(),
+      uid,
+    });
+    setQuery("");
+  };
 
   return (
     <Container>
@@ -22,7 +40,7 @@ const Search = () => {
       <form
         onSubmit={(event) => {
           doFetch(
-            `https://financialmodelingprep.com/api/v3/quote/${query}` +
+            `https://financialmodelingprep.com/api/v3/quote/${[query]}` +
               "?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
           );
 
@@ -34,7 +52,9 @@ const Search = () => {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <Button variant="contained" size = "small" type="submit">Search</Button>
+        <Button variant="contained" size="small" type="submit">
+          Search
+        </Button>
       </form>
 
       {/* <SearchInput
@@ -50,24 +70,25 @@ const Search = () => {
             <div>Loading ...</div>
           ) : (
             <>
-             {data &&
-              data.map((item) => {
-                return (
-                  <li key={item.id}>
-                    <span>{item.symbol}</span>
-                    <span>{item.price}</span>
-                    <span>{item.name}</span>
-                    <span> % {item.change}</span>
-                    <>
-                      {item.change < 0 ? (
-                        <ArrowDownward style={{ color: "red" }} />
-                      ) : (
-                        <ArrowUpward />
-                      )}
-                    </>
-                  </li>
-                );
-              })}
+              {data &&
+                data.map((item) => {
+                  return (
+                    <li key={item.id}>
+                      <span>{item.symbol}</span>
+                      <span>{item.price}</span>
+                      <span>{item.name}</span>
+                      <span> % {item.change}</span>
+                      <>
+                        {item.change < 0 ? (
+                          <ArrowDownward style={{ color: "red" }} />
+                        ) : (
+                          <ArrowUpward />
+                        )}
+                      </>
+                      <button onClick={(event) => sendSymbol(event)}>Save</button>
+                    </li>
+                  );
+                })}
             </>
           )}
         </ul>
