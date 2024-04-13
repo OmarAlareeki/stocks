@@ -1,6 +1,6 @@
 .App-logo {
   pointer-events: none;
-  color: #3bff00;
+  color: yellow;
   position: relative;
   top: 5px;
   left: 2px;
@@ -38,7 +38,7 @@ input:focus {
 .App-header {
   background-color: black;
   /* font-size: calc(10px + 2vmin); */
-  color: #3bff00;
+  color: yellow;
   height: 50px;
 }
 
@@ -159,7 +159,7 @@ section {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 .list > li > * {
-  margin: 15px;
+  display: flex;
 }
 h5{
   color: green
