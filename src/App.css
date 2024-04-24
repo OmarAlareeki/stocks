@@ -130,15 +130,18 @@ section {
   width: 200px !important;
   min-width: 200px !important;
 }
-.css-i4bv87-MuiSvgIcon-root {
+/* .css-i4bv87-MuiSvgIcon-root {
   margin-right: 15px !important;
-}
+} */
 .css-1wvake5.ps-active {
   background: black !important;
 }
 .listContainer {
   width: 90%;
   margin: auto;
+}
+.css-dip3t8{
+  background: rgb(249, 249, 249) !important
 }
 
 .list {

@@ -1,5 +1,5 @@
 import SearchInput from "../components/SearchInput";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../src/App.css";
 import useFetch from "../Hooks/useFetch";
 import useDataApi from "../Hooks/axisFetch";
@@ -14,17 +14,18 @@ import Star from "@mui/icons-material/Star";
 
 const Search = () => {
   const { user } = useUserAuth(auth);
+  const apiUrl = "https://financialmodelingprep.com/api/v3/quote/";
   const [query, setQuery] = useState([]);
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    "https://financialmodelingprep.com/api/v3/quote/BTCUSD?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+    `${apiUrl}/BTCUSD?apikey=${process.env.REACT_APP_API_KEY}`
   );
 
   const sendSymbol = async (event) => {
     event.preventDefault();
-    if (query.trim() === "") {
-      alert("Enter valid message");
-      return;
-    }
+    // if (query.trim() === "") {
+    //   alert("Enter valid message");
+    //   return;
+    // }
     const { uid, displayName } = auth.currentUser;
     await addDoc(collection(db, "stocksSymbol"), {
       text: query,
@@ -39,14 +40,11 @@ const Search = () => {
     <Container>
       <h1 className="header"> CRYPTO CURRENCIES SEARCH</h1>
       <h3>You can search by company name, compnay stock shortcut</h3>
-
       <form
         onSubmit={(event) => {
           doFetch(
-            `https://financialmodelingprep.com/api/v3/quote/${[query]}` +
-              "?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+            `${apiUrl}${[query]}?apikey=${process.env.REACT_APP_API_KEY}`
           );
-
           event.preventDefault();
         }}
       >
@@ -92,10 +90,14 @@ const Search = () => {
                         ""
                       ) : (
                         <button
-                          style={{ border: "none", background: "none", color: "yellow" }}
+                          style={{
+                            border: "none",
+                            background: "none",
+                            color: "yellow",
+                          }}
                           onClick={(event) => sendSymbol(event)}
                         >
-                          <Star />
+                          SAVE TO TRACK
                         </button>
                       )}
                     </li>

@@ -7,7 +7,8 @@ import {
   Euro,
 } from "@mui/icons-material";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
+import "../../src/animation.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -29,15 +30,15 @@ const Home = () => {
       >
         Welcome to <Diamond /> StockSearch
       </h1>
-      <div style={{ margin: "50px"}}>
-        <CurrencyBitcoin />
-        <CurrencyExchange />
-        <CurrencyYen />
-        <AttachMoney />
-        <Euro />
-      </div>
+      <ul className="container">
+        <li className="avatar"> <CurrencyBitcoin /></li>
+        <li className="avatar"> <CurrencyExchange /></li>
+        <li className="avatar"> <CurrencyYen /></li>
+        <li className="avatar"> <AttachMoney /></li>
+        <li className="avatar"> <Euro /></li>
+      </ul>
       <div>
-        <button
+        <Link to="/login"
           style={{
             padding: "20px 50px",
             borderRadius: "45px",
@@ -49,7 +50,7 @@ const Home = () => {
           }}
         >
           Get started
-        </button>
+        </Link>
       </div>
     </Container>
   );
