@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 const useDataApi = (initialUrl, initialData) => {
   const [data, setData] = useState(initialData);
@@ -24,6 +24,11 @@ const useDataApi = (initialUrl, initialData) => {
     };
 
     fetchData();
+    // Fetch updated data every 30 seconds (adjust interval as needed)
+    const intervalId = setInterval(fetchData, 30000);
+
+    // Clean up function to clear interval when component unmounts
+    return () => clearInterval(intervalId);
   }, [url]);
 
   return [{ data, isLoading, isError }, setUrl];

@@ -40,6 +40,8 @@ import Signup from "./auth/SignUp";
 import ProtectedRoute from "../src/auth/ProtectedRoute";
 import { UserAuthContextProvider } from "../src/auth/UserAuthContent";
 import Home from "../src/pages/Home";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function App() {
   const { collapseSidebar } = useProSidebar();
@@ -66,12 +68,8 @@ function App() {
           <Menu>
             <MenuItem
               className="menu1"
-              icon={
-                <MenuRoundedIcon
-                  onClick={() => {
-                    collapseSidebar();
-                  }}
-                />
+              onClick={() => collapseSidebar()}
+              icon={<MenuRoundedIcon />
               }
             ></MenuItem>
 
@@ -87,7 +85,7 @@ function App() {
             >
               Latest Changes
             </MenuItem>
-            <SubMenu
+            {/* <SubMenu
               component={<Link to="news" className="link" />}
               label="News"
               icon={<Newspaper className="icon-ready" />}
@@ -95,21 +93,33 @@ function App() {
               <MenuItem> Stocks</MenuItem>
               <MenuItem> Currencies Exchange</MenuItem>
               <MenuItem> cryptocurrencies</MenuItem>
-            </SubMenu>
+            </SubMenu> */}
+            <MenuItem
+              component={<Link to="news" className="link" />}
+              icon={<Newspaper className="icon-ready" />}
+            >
+              News
+            </MenuItem>
             <MenuItem
               component={<Link to="tradable stocks" className="link" />}
               icon={<JoinFull className="icon-ready" />}
             >
               Tradable Stocks
             </MenuItem>
-            <SubMenu
+            {/* <SubMenu
               component={<Link to="quote" className="link" />}
               label="quote"
               icon={<RequestQuote className="icon-ready" />}
             >
               <MenuItem> Full Quote</MenuItem>
               <MenuItem> Simple Quote</MenuItem>
-            </SubMenu>
+            </SubMenu> */}
+            <MenuItem
+              component={<Link to="quote" className="link" />}
+              icon={<RequestQuote className="icon-ready" />}
+            >
+              Quote
+            </MenuItem>
 
             <MenuItem
               component={<Link to="search" className="link" />}
@@ -120,9 +130,9 @@ function App() {
 
             <MenuItem
               component={<Link to="recommended" className="link" />}
-              icon={<Insights />}
+              icon={<SsidChart />}
             >
-              Recommended
+              Charts
             </MenuItem>
             <MenuItem
               component={<Link to="companies profile" className="link" />}
@@ -130,15 +140,21 @@ function App() {
             >
               Companies Profile
             </MenuItem>
-            <SubMenu
+            {/* <SubMenu
               component={<Link to="Charts" className="link" />}
               label="charts"
               icon={<SsidChart />}
             >
               <MenuItem> Chart Intraday </MenuItem>
               <MenuItem> Daily Chart</MenuItem>
-            </SubMenu>
-            <SubMenu
+            </SubMenu> */}
+            <MenuItem
+              component={<Link to="chartd" className="link" />}
+              icon={<Insights />}
+            >
+              Recommended
+            </MenuItem>
+            {/* <SubMenu
               component={<Link to="crypto" className="link" />}
               label="Crypto"
               icon={<CurrencyBitcoin className="icon-ready" />}
@@ -146,7 +162,15 @@ function App() {
               <MenuItem> Account </MenuItem>
               <MenuItem> Privacy </MenuItem>
               <MenuItem> Notifications </MenuItem>
-            </SubMenu>
+            </SubMenu> */}
+
+            <MenuItem
+              component={<Link to="crypto" className="link" />}
+              icon={<CurrencyBitcoin className="icon-ready" />}
+            >
+              Crypto
+            </MenuItem>
+
             <MenuItem
               component={<Link to="saved track" className="link" />}
               icon={<Star />}
@@ -164,22 +188,22 @@ function App() {
       </div>
 
       <section>
-      <UserAuthContextProvider>
-        <Routes>
-          <Route index element={<Home />} style={{width: "100%"}}/>
-          <Route path="stock search" element={<StockSearch />} />
-          <Route path="latest changes" element={<LatestChanges />} />
-          <Route path="news" element={<News />} />
-          <Route path="tradable stocks" element={<TradableStocks />} />
-          <Route path="quote" element={<Quote />} />
-          <Route path="search" element={<Search />} />
-          <Route path="recommended" element={<Recommended />} />
-          <Route path="companies profile" element={<CompaniesProfile />} />
-          <Route path="Charts" element={<Charts />} />
-          <Route path="Crypto" element={<Crypto />} />
-          <Route path="saved track" element={<SavedTrack />} />
-          {/* <Route path="profile" element={<Profile />} /> */}
-          <Route
+        <UserAuthContextProvider>
+          <Routes>
+            <Route index element={<Home />} style={{ width: "100%" }} />
+            <Route path="stock search" element={<StockSearch />} />
+            <Route path="latest changes" element={<LatestChanges />} />
+            <Route path="news" element={<News />} />
+            <Route path="tradable stocks" element={<TradableStocks />} />
+            <Route path="quote" element={<Quote />} />
+            <Route path="search" element={<Search />} />
+            <Route path="recommended" element={<Recommended />} />
+            <Route path="companies profile" element={<CompaniesProfile />} />
+            <Route path="Charts" element={<Charts />} />
+            <Route path="Crypto" element={<Crypto />} />
+            <Route path="saved track" element={<SavedTrack />} />
+            {/* <Route path="profile" element={<Profile />} /> */}
+            <Route
               path="profile"
               element={
                 <ProtectedRoute>
@@ -189,7 +213,7 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-        </Routes>
+          </Routes>
         </UserAuthContextProvider>
       </section>
     </div>
