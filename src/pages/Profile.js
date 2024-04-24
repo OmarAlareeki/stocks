@@ -4,15 +4,18 @@ import { useUserAuth } from "../auth/UserAuthContent";
 
 const Profile = () => {
   const { user } = useUserAuth();
-  console.log(user)
   return (
     <>
       <Container>
         <h1>Profile page</h1>
-        <h2>{user.email}</h2>
-        <img src={user.photoURL} alt="userPhoto" />
+        <span></span>
+        <h2>User ID : {user.email}</h2>
+        <img
+          src={user.photoURL}
+          alt="userPhoto"
+          style={{ borderRadius: "70px", border: "10px solid #ececec" }}
+        />
         <SignOut />
-
       </Container>
     </>
   );

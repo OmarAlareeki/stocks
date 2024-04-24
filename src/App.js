@@ -69,8 +69,7 @@ function App() {
             <MenuItem
               className="menu1"
               onClick={() => collapseSidebar()}
-              icon={<MenuRoundedIcon />
-              }
+              icon={<MenuRoundedIcon />}
             ></MenuItem>
 
             <MenuItem
@@ -201,8 +200,15 @@ function App() {
             <Route path="companies profile" element={<CompaniesProfile />} />
             <Route path="Charts" element={<Charts />} />
             <Route path="Crypto" element={<Crypto />} />
-            <Route path="saved track" element={<SavedTrack />} />
-            {/* <Route path="profile" element={<Profile />} /> */}
+            <Route
+              path="saved track"
+              element={
+                <ProtectedRoute>
+                  <SavedTrack />
+                </ProtectedRoute>
+              }
+            />
+
             <Route
               path="profile"
               element={

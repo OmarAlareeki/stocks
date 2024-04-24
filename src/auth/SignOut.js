@@ -2,6 +2,7 @@ import React from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./auth";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const SignOut = () => {
   const navigate = useNavigate();
@@ -21,9 +22,10 @@ const SignOut = () => {
   return (
     <>
       <nav>
-        <p>Welcome Home</p>
-        <div>
-          <button onClick={handleLogout}>Logout</button>
+        <div style={{ margin: "10px" }}>
+          <Button variant="contained" onClick={handleLogout}>
+            Logout
+          </Button>
         </div>
       </nav>
     </>
