@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import useFetch from "../Hooks/useFetch";
 import Container from "@mui/material/Container";
 import SearchInput from "../components/SearchInput";
 import useDataApi from "../Hooks/axisFetch";
@@ -8,7 +7,7 @@ import Button from "@mui/material/Button";
 const CompaniesProfile = () => {
   const [query, setQuery] = useState("GOOGL");
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    "https://financialmodelingprep.com/api/v3/profile/GOOGL?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+    `https://financialmodelingprep.com/api/v3/profile/GOOGL?apikey=${process.env.REACT_APP_API_KEY}`
   );
   const [imageUrl, setImageUrl] = useState(null);
 
@@ -20,8 +19,7 @@ const CompaniesProfile = () => {
         <form
           onSubmit={(event) => {
             doFetch(
-              `https://financialmodelingprep.com/api/v3/profile/${query}` +
-                "?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+              `https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${process.env.REACT_APP_API_KEY}`
             );
 
             event.preventDefault();

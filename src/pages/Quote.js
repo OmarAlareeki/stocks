@@ -11,12 +11,12 @@ const Quote = () => {
   const { data, isPending } = useFetch(
     "https://financialmodelingprep.com/api/v3/quote/" +
       text +
-      "?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+      "?apikey=77xtVWmNu1DOGBroooyXNWCxELSM8FV5"
   );
   // const [data] = useFetch(
   //   "https://financialmodelingprep.com/api/v3/quote/" +
   //     text +
-  //     "?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+  //     "?apikey=77xtVWmNu1DOGBroooyXNWCxELSM8FV5"
   // );
   console.log(data);
 

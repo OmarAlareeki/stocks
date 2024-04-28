@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 const Search = () => {
   const [query, setQuery] = useState("GOOGL");
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    "https://financialmodelingprep.com/api/v3/quote/GOOGL?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+    "https://financialmodelingprep.com/api/v3/quote/GOOGL?apikey=77xtVWmNu1DOGBroooyXNWCxELSM8FV5"
   );
 
   return (
@@ -23,7 +23,7 @@ const Search = () => {
         onSubmit={(event) => {
           doFetch(
             `https://financialmodelingprep.com/api/v3/quote/${query}` +
-              "?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+              "?apikey=77xtVWmNu1DOGBroooyXNWCxELSM8FV5"
           );
 
           event.preventDefault();
