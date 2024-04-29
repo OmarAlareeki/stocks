@@ -1,33 +1,15 @@
 import { useState, useEffect } from "react";
-import useFetch from "../Hooks/useFetch";
 import Container from "@mui/material/Container";
-import Info from "@mui/icons-material/Info";
-import RequestQuote from "@mui/icons-material/RequestQuote";
-import Radar from "@mui/icons-material/Radar";
-import JoinFull from "@mui/icons-material/JoinFull";
-import Equalizer from "@mui/icons-material/Equalizer";
-import Newspaper from "@mui/icons-material/Newspaper";
-import Bolt from "@mui/icons-material/Bolt";
-import Star from "@mui/icons-material/Star";
-import Diamond from "@mui/icons-material/Diamond";
 import useDataApi from "../Hooks/axisFetch";
 import companiesNames from "../data/list1.json";
 
 const TradableStocks = () => {
-  const [query, setQuery] = useState("GOOGL,MSFT,NVDA,AMZN,META,UNH,MA,AAPL,HD,LLY,AVGO,TSLA,JPM,COST,CRM,XOM,NFLX,CVX,MRK,AMD");
+  const [query, setQuery] = useState(
+    "GOOGL,MSFT,NVDA,AMZN,META,UNH,MA,AAPL,HD,LLY,AVGO,TSLA,JPM,COST,CRM,XOM,NFLX,CVX,MRK,AMD"
+  );
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
     "https://financialmodelingprep.com/api/v3/profile/GOOGL?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
   );
-
-  // function update() {
-  //   companiesNames.map((item) => {
-  //     query.push(item.symbol);
-  //   });
-
-  //   return query
-  // }
-  // update();
-  // console.log(query.toString())
 
   return (
     <>
@@ -43,10 +25,6 @@ const TradableStocks = () => {
             flexDirection: "column",
           }}
         >
-          {/* <h2>
-          It is one of the best GateWays to find the best recommendations where
-          to invest.
-        </h2> */}
           <div
             onLoad={(event) => {
               doFetch(

@@ -27,7 +27,7 @@ const Search = () => {
     //   return;
     // }
     const { uid, displayName } = auth.currentUser;
-    await addDoc(collection(db, "stocksSymbol"), {
+    await addDoc(collection(db, "stks"), {
       text: query,
       name: displayName,
       createdAt: serverTimestamp(),
