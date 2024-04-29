@@ -148,7 +148,7 @@ function App() {
               <MenuItem> Daily Chart</MenuItem>
             </SubMenu> */}
             <MenuItem
-              component={<Link to="chartd" className="link" />}
+              component={<Link to="recommended" className="link" />}
               icon={<Insights />}
             >
               Recommended
