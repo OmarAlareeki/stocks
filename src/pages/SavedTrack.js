@@ -57,7 +57,6 @@ const SavedTrack = () => {
     <>
       <Container>
         <h1 className="header">KEEP TRACK OF YOUR SAVED STOCKS</h1>
-        <h3>Seamless Transactions</h3>
         <main className="chat-box">
           {/* <div>
             {quote?.map((quote) => (

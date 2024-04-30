@@ -4,12 +4,14 @@ import { useUserAuth } from "../auth/UserAuthContent";
 
 const Profile = () => {
   const { user } = useUserAuth();
+  console.log(user.metadata)
   return (
     <>
       <Container>
         <h1>Profile page</h1>
         <span></span>
         <h2>User ID : {user.email}</h2>
+        <h5>Last Signed in : {user.metadata.lastSignInTime}</h5>
         <img
           src={user.photoURL}
           alt="userPhoto"

@@ -27,44 +27,49 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Go to profile page to sign up and create a user.
+The benefit of creating a user:
 
-### `npm run eject`
+    You can make any search item to track.
+    The saved track page will be create.
+    The saved track will show you all the items maked to track and save them there.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Here is what we serve you:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    Search company by name, stocks shortcut, or company symbol.
+    You can get a full quote of any stocks online.
+    Real-time updates of changes.
+    Keep track of all the companies by saving the company in your saved page.
+    Fast to search all the data of any company.
+    Can be used from any device, computer, or your mobile.
+    It brings you all sources related to stocks such as news, updates, and on time price chnages.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+How to naviagte through the app:
+There are nine pages plus profile page in this app. Every page has some features you might need to know how to use them before exploring the app. Below is the description of all these features for each page.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    LatestChanges Page
 
-## Learn More
+LatestChanges page shows you the latest changes of the most popular companies and their price changes.
+News Page
+LatestChanges page shows you the latest changes of the most popular companies and their price changes.
+TradableStocks
+TradableStocks page tells you what stocks are available to buy.
+Quote page
+Quote & Search pages brings you the full data you need to know about your searched company.
+Search page
+Quote & Search pages brings you the full data you need to know about your searched company.
+Recommended page
+Recommended page brings you the most recommended available tradable stocks.
+CompaniesProfile
+CompaniesProfile page brings you all the current information about the searched company.
+Charts Page
+Charts page shows you the historical changes and the current changes of the targeted company.
+SavedTrack page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    If you have an account, you will have a saved page page that holds all the companies stocks that you can track all the changes of that company.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Recommendations:
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    Investing in stocks are risky and it is not garanteed to win always.
+    always be careful to invest and where to invest.
+    We are NOT resposible for your investment in any stocks you put you money in. We only shows you information and based on that you make your decision.

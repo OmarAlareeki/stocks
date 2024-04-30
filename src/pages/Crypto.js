@@ -1,7 +1,6 @@
 import SearchInput from "../components/SearchInput";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../../src/App.css";
-import useFetch from "../Hooks/useFetch";
 import useDataApi from "../Hooks/axisFetch";
 import ArrowDownward from "@mui/icons-material/ArrowDownward";
 import ArrowUpward from "@mui/icons-material/ArrowUpward";
@@ -10,7 +9,6 @@ import Button from "@mui/material/Button";
 import { auth, db } from "../auth/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useUserAuth } from "../auth/UserAuthContent";
-import Star from "@mui/icons-material/Star";
 
 const Search = () => {
   const { user } = useUserAuth(auth);
@@ -22,10 +20,6 @@ const Search = () => {
 
   const sendSymbol = async (event) => {
     event.preventDefault();
-    // if (query.trim() === "") {
-    //   alert("Enter valid message");
-    //   return;
-    // }
     const { uid, displayName } = auth.currentUser;
     await addDoc(collection(db, "stks"), {
       text: query,
@@ -57,12 +51,6 @@ const Search = () => {
           Search
         </Button>
       </form>
-
-      {/* <SearchInput
-        type="text"
-        value={text}
-        onChange={handleChange}
-      /> */}
 
       <div className="listContainer">
         <ul className="list">

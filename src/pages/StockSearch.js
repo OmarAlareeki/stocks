@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import useFetch from "../Hooks/useFetch";
 import Container from "@mui/material/Container";
 import Info from "@mui/icons-material/Info";
 import RequestQuote from "@mui/icons-material/RequestQuote";
@@ -9,17 +8,18 @@ import Equalizer from "@mui/icons-material/Equalizer";
 import Newspaper from "@mui/icons-material/Newspaper";
 import Bolt from "@mui/icons-material/Bolt";
 import Star from "@mui/icons-material/Star";
-import Diamond from "@mui/icons-material/Diamond";
 import Insights from "@mui/icons-material/Insights";
 import useDataApi from "../Hooks/axisFetch";
 
 const StockSearch = () => {
+  const apiUrl = `https://financialmodelingprep.com/api/v3/profile/`;
   const [query, setQuery] = useState(
     "GOOGL,MSFT,NVDA,AMZN,META,UNH,MA,AAPL,HD,LLY,AVGO,TSLA,JPM,COST,CRM,XOM,NFLX,CVX,MRK,AMD"
   );
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    "https://financialmodelingprep.com/api/v3/profile/GOOGL?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+    `${apiUrl}${query}?apikey=${process.env.REACT_APP_API_KEY}`
   );
+
   return (
     <Container>
       <div
@@ -31,15 +31,10 @@ const StockSearch = () => {
           flexDirection: "column",
         }}
       >
-        {/* <h2>
-          It is one of the best GateWays to find the best recommendations where
-          to invest.
-        </h2> */}
         <div
           onLoad={(event) => {
             doFetch(
-              `https://financialmodelingprep.com/api/v3/profile/${query}` +
-                "?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
+              `${apiUrl}${query}?apikey=${process.env.REACT_APP_API_KEY}`
             );
 
             event.preventDefault();
@@ -96,7 +91,10 @@ const StockSearch = () => {
         <ul>
           <li>You can make any search item to track.</li>
           <li>The saved track page will be create.</li>
-          <li>The saved track will show you all the items maked to track and save them there.</li>
+          <li>
+            The saved track will show you all the items maked to track and save
+            them there.
+          </li>
         </ul>
         <h2 className="header">Here is what we serve you:</h2>
         <ol>
@@ -115,53 +113,72 @@ const StockSearch = () => {
           </li>
         </ol>
         <h1>How to naviagte through the app:</h1>
-        <h4>There are nine pages plus profile page in this app. Every page has some features you might need 
-          to know how to use them before exploring the app. Below is the description of all these features 
-          for each page.
+        <h4>
+          There are nine pages plus profile page in this app. Every page has
+          some features you might need to know how to use them before exploring
+          the app. Below is the description of all these features for each page.
         </h4>
         <ol>
           <li>
-            <h5>LatestChanges Page <Bolt /></h5>
+            <h5>
+              LatestChanges Page <Bolt />
+            </h5>
             LatestChanges page shows you the latest changes of the most popular
             companies and their price changes.
           </li>
           <li>
-            <h5>News Page <Newspaper /></h5>
+            <h5>
+              News Page <Newspaper />
+            </h5>
             LatestChanges page shows you the latest changes of the most popular
             companies and their price changes.
           </li>
           <li>
-            <h5>TradableStocks <JoinFull /></h5>
+            <h5>
+              TradableStocks <JoinFull />
+            </h5>
             TradableStocks page tells you what stocks are available to buy.
           </li>
           <li>
-            <h5>Quote page <RequestQuote /></h5>
+            <h5>
+              Quote page <RequestQuote />
+            </h5>
             Quote & Search pages brings you the full data you need to know about
             your searched company.
           </li>
           <li>
-            <h5>Search page <Radar /></h5>
+            <h5>
+              Search page <Radar />
+            </h5>
             Quote & Search pages brings you the full data you need to know about
             your searched company.
           </li>
           <li>
-            <h5>Recommended page<Insights /></h5>
+            <h5>
+              Recommended page
+              <Insights />
+            </h5>
             Recommended page brings you the most recommended available tradable
             stocks.
           </li>
           <li>
-            <h5>CompaniesProfile <Info /></h5>
-            
-            CompaniesProfile page brings you all the current
-            information about the searched company.
+            <h5>
+              CompaniesProfile <Info />
+            </h5>
+            CompaniesProfile page brings you all the current information about
+            the searched company.
           </li>
           <li>
-            <h5>Charts Page <Equalizer /></h5>
+            <h5>
+              Charts Page <Equalizer />
+            </h5>
             Charts page shows you the historical changes and the current changes
             of the targeted company.
           </li>
           <li>
-            <h5>SavedTrack page <Star /></h5>
+            <h5>
+              SavedTrack page <Star />
+            </h5>
             If you have an account, you will have a saved page page that holds
             all the companies stocks that you can track all the changes of that
             company.
