@@ -1,27 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Container from "@mui/material/Container";
 import SearchInput from "../components/SearchInput";
 import useDataApi from "../Hooks/axisFetch";
 import Button from "@mui/material/Button";
 
 const CompaniesProfile = () => {
+  const url = `https://financialmodelingprep.com/api/v3/profile/`;
   const [query, setQuery] = useState("GOOGL");
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    `https://financialmodelingprep.com/api/v3/profile/GOOGL?apikey=${process.env.REACT_APP_API_KEY}`
+    `${url}GOOGL?apikey=${process.env.REACT_APP_API_KEY}`
   );
-  const [imageUrl, setImageUrl] = useState(null);
 
   return (
     <>
       <Container>
         <h1 className="header"> Companies Profile</h1>
-        <h3>Welcome User</h3>
+        <h3>Search company name by its symbol</h3>
         <form
           onSubmit={(event) => {
             doFetch(
-              `https://financialmodelingprep.com/api/v3/profile/${query}?apikey=${process.env.REACT_APP_API_KEY}`
+              `${url}${query}?apikey=${process.env.REACT_APP_API_KEY}`
             );
-
+            
             event.preventDefault();
           }}
         >
@@ -35,6 +35,7 @@ const CompaniesProfile = () => {
           </Button>
         </form>
         {isLoading && <div>Loading....</div>}
+        {isError && <div>Something went wrong ...</div>}
         {data &&
           data.map((item) => {
             return (

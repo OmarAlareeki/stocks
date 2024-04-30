@@ -1,40 +1,46 @@
 import SearchInput from "../components/SearchInput";
 import { useState } from "react";
 import "../../src/App.css";
-import useFetch from "../Hooks/useFetch";
+import useDataApi from "../Hooks/axisFetch";
 import ArrowDownward from "@mui/icons-material/ArrowDownward";
 import ArrowUpward from "@mui/icons-material/ArrowUpward";
 import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
 
 const Quote = () => {
-  const [text, setText] = useState("GOOGL");
-  const { data, isPending } = useFetch(
-    "https://financialmodelingprep.com/api/v3/quote/" +
-      text +
-      "?apikey=77xtVWmNu1DOGBroooyXNWCxELSM8FV5"
+  const apiUrl = "https://financialmodelingprep.com/api/v3/quote/";
+  const [query, setQuery] = useState([]);
+  const [{ data, isLoading, isError }, doFetch] = useDataApi(
+    `${apiUrl}/googl?apikey=${process.env.REACT_APP_API_KEY}`
   );
-  // const [data] = useFetch(
-  //   "https://financialmodelingprep.com/api/v3/quote/" +
-  //     text +
-  //     "?apikey=77xtVWmNu1DOGBroooyXNWCxELSM8FV5"
-  // );
-  console.log(data);
-
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setText(value);
-  };
 
   return (
     <>
       <Container>
         <h1 className="header"> Quote Page</h1>
         <h3>You can search by company name, compnay stock shortcut</h3>
-        <SearchInput type="text" value={text} onChange={handleChange} />
+        <form
+          onSubmit={(event) => {
+            doFetch(
+              `${apiUrl}${[query]}?apikey=${process.env.REACT_APP_API_KEY}`
+            );
+            event.preventDefault();
+          }}
+        >
+          <SearchInput
+            type="text"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+          <Button variant="contained" size="small" type="submit">
+            Search
+          </Button>
+        </form>
 
         <div className="listContainer">
           <ul style={{ display: "flex", flexDirection: "column" }}>
-            {isPending && <div>Loading....</div>}
+          {isError && <div>Something went wrong ...</div>}
+            {isLoading && <div>Loading....</div>}
             {data &&
               data.map((item) => {
                 return (

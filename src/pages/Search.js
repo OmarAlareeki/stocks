@@ -1,7 +1,6 @@
 import SearchInput from "../components/SearchInput";
 import { useState } from "react";
 import "../../src/App.css";
-import useFetch from "../Hooks/useFetch";
 import useDataApi from "../Hooks/axisFetch";
 import ArrowDownward from "@mui/icons-material/ArrowDownward";
 import ArrowUpward from "@mui/icons-material/ArrowUpward";
@@ -9,9 +8,10 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 
 const Search = () => {
+  const apiUrl = "https://financialmodelingprep.com/api/v3/quote/";
   const [query, setQuery] = useState("GOOGL");
   const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    "https://financialmodelingprep.com/api/v3/quote/GOOGL?apikey=77xtVWmNu1DOGBroooyXNWCxELSM8FV5"
+    `${apiUrl}GOOGL?apikey=${process.env.REACT_APP_API_KEY}`
   );
 
   return (
@@ -21,10 +21,7 @@ const Search = () => {
 
       <form
         onSubmit={(event) => {
-          doFetch(
-            `https://financialmodelingprep.com/api/v3/quote/${query}` +
-              "?apikey=77xtVWmNu1DOGBroooyXNWCxELSM8FV5"
-          );
+          doFetch(`${apiUrl}${query}?apikey=${process.env.REACT_APP_API_KEY}`);
 
           event.preventDefault();
         }}
@@ -34,14 +31,10 @@ const Search = () => {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <Button variant="contained" size = "small" type="submit">Search</Button>
+        <Button variant="contained" size="small" type="submit">
+          Search
+        </Button>
       </form>
-
-      {/* <SearchInput
-        type="text"
-        value={text}
-        onChange={handleChange}
-      /> */}
 
       <div className="listContainer">
         <ul className="list">
@@ -50,24 +43,24 @@ const Search = () => {
             <div>Loading ...</div>
           ) : (
             <>
-             {data &&
-              data.map((item) => {
-                return (
-                  <li key={item.id}>
-                    <span>{item.symbol}</span>
-                    <span>{item.price}</span>
-                    <span>{item.name}</span>
-                    <span> % {item.change}</span>
-                    <>
-                      {item.change < 0 ? (
-                        <ArrowDownward style={{ color: "red" }} />
-                      ) : (
-                        <ArrowUpward />
-                      )}
-                    </>
-                  </li>
-                );
-              })}
+              {data &&
+                data.map((item) => {
+                  return (
+                    <li key={item.id}>
+                      <span>{item.symbol}</span>
+                      <span>{item.price}</span>
+                      <span>{item.name}</span>
+                      <span> % {item.change}</span>
+                      <>
+                        {item.change < 0 ? (
+                          <ArrowDownward style={{ color: "red" }} />
+                        ) : (
+                          <ArrowUpward />
+                        )}
+                      </>
+                    </li>
+                  );
+                })}
             </>
           )}
         </ul>

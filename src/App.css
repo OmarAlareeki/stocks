@@ -60,8 +60,7 @@ body {
 
 h1 {
   color: #165a72;
-  margin: 50px auto;
-  font-size: 40px;
+  font-size: 32px;
 }
 .menu1 {
   margin-bottom: 20px;
@@ -209,15 +208,15 @@ h5{
 }
 /* mobile view changes */
 @media only screen and (max-width: 600px) {
-  .css-i4bv87-MuiSvgIcon-root {
+  /* .css-i4bv87-MuiSvgIcon-root {
     font-size: 1rem !important;
-  }
+  } */
   .menu1 {
     margin-bottom: 10px;
     margin-top: 0px;
   }
-  .css-1wvake5.ps-collapsed {
+  /* .css-1wvake5.ps-collapsed {
     width: 54px !important;
     min-width: 54px !important;
-  }
+  } */
 }
