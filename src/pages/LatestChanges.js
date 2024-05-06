@@ -10,8 +10,8 @@ const LatestChanges = () => {
   return (
     <>
       <Container>
-        <h1 className="header"> DASHBOARD PAGE</h1>
-        <h3>Welcome User</h3>
+        <h1 className="header"> LAST STOCKS CHANGE</h1>
+        <h3>Below you can find all the last changes in stocks, tickers, prices, and investors.</h3>
       </Container>
     </>
   );

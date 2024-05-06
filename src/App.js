@@ -78,12 +78,12 @@ function App() {
             >
               StockSearch
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
               component={<Link to="latest changes" className="link" />}
               icon={<Bolt />}
             >
               Latest Changes
-            </MenuItem>
+            </MenuItem> */}
             {/* <SubMenu
               component={<Link to="news" className="link" />}
               label="News"
@@ -147,12 +147,12 @@ function App() {
               <MenuItem> Chart Intraday </MenuItem>
               <MenuItem> Daily Chart</MenuItem>
             </SubMenu> */}
-            <MenuItem
+            {/* <MenuItem
               component={<Link to="recommended" className="link" />}
               icon={<Insights />}
             >
               Recommended
-            </MenuItem>
+            </MenuItem> */}
             {/* <SubMenu
               component={<Link to="crypto" className="link" />}
               label="Crypto"
