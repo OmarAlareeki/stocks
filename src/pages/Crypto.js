@@ -63,7 +63,6 @@ const Search = () => {
                 data.map((item) => {
                   return (
                     <li key={item.id}>
-                      <span>{item.symbol}</span>
                       <span>{item.price}</span>
                       <span>{item.name}</span>
                       <span> % {item.change}</span>
@@ -85,7 +84,7 @@ const Search = () => {
                           }}
                           onClick={(event) => sendSymbol(event)}
                         >
-                          SAVE TO TRACK
+                          TRACK
                         </button>
                       )}
                     </li>

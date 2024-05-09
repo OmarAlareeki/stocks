@@ -4,7 +4,6 @@ import { useUserAuth } from "../auth/UserAuthContent";
 
 const Profile = () => {
   const { user } = useUserAuth();
-  console.log(user.metadata)
   return (
     <>
       <Container>

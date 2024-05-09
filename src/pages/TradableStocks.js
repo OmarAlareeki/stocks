@@ -2,39 +2,48 @@ import { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import useDataApi from "../Hooks/axisFetch";
 import companiesNames from "../data/list1.json";
+console.log(companiesNames)
+
+
 
 const TradableStocks = () => {
-  const [query, setQuery] = useState(
-    "GOOGL,MSFT,NVDA,AMZN,META,UNH,MA,AAPL,HD,LLY,AVGO,TSLA,JPM,COST,CRM,XOM,NFLX,CVX,MRK,AMD"
-  );
-  const [{ data, isLoading, isError }, doFetch] = useDataApi(
-    "https://financialmodelingprep.com/api/v3/profile/GOOGL?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
-  );
+  const apiUrl = "https://financialmodelingprep.com/api/v3/profile/";
+  const [query, setQuery] = useState()
+  const list = []
+  const [{ data, isLoading, isError }, doFetch] = useDataApi();
+
+
+  useEffect(() => {
+    for(var i = 0; i <= 200; i++) { 
+      if (!companiesNames[i].symbol.includes("."))
+      list.push(companiesNames[i].symbol)
+    }
+    const listToString = list.toString();
+    setQuery(listToString)
+    doFetch(
+      `${apiUrl}${query}?apikey=${process.env.REACT_APP_API_KEY}`
+    );
+    
+  },[query, doFetch])
+
 
   return (
     <>
       <Container>
-        <h1 className="header"> DASHBOARD PAGE</h1>
-        <h3>Coming from Tradable stocks.js</h3>
+        <h1 className="header"> TRADABLE STOCKS</h1>
+        <h3>
+          Most of the stocks below, their price is higher than 3% as the last
+          change.
+        </h3>
         <div
           style={{
-            height: "100vh",
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
             flexDirection: "column",
           }}
         >
-          <div
-            onLoad={(event) => {
-              doFetch(
-                `https://financialmodelingprep.com/api/v3/profile/${query}` +
-                  "?apikey=YzDaadwGc4VHp4GhMG6gcAl5UsloEn1L"
-              );
-
-              event.preventDefault();
-            }}
-          >
+         
             <ul
               style={{
                 listStyle: "none",
@@ -51,10 +60,11 @@ const TradableStocks = () => {
                 <>
                   {data &&
                     data.map((item) => {
-                      if (item.changes > 0)
+                      // if (item.changes > 0)
                         return (
                           <li key={item.id} style={{ margin: "20px" }}>
-                            <img src={item.image} width={20} height={20} />
+                            <span>{item.symbol}</span>
+                            {/* <img src={item.image} width={20} height={20} /> */}
                             <span
                               style={
                                 item.changes < 0
@@ -79,7 +89,6 @@ const TradableStocks = () => {
               )}
             </ul>
           </div>
-        </div>
       </Container>
     </>
   );

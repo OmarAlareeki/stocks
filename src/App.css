@@ -105,6 +105,9 @@ body::-webkit-scrollbar {
 .css-vj11vy.ps-menu-root {
   border: none;
 }
+.css-1oqqzyl-MuiContainer-root {
+  padding-left: 0px !important
+}
 section {
   width: 88%;
 
