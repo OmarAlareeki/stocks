@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import useDataApi from "../Hooks/axisFetch";
 import companiesNames from "../data/list1.json";
-console.log(companiesNames)
-
-
 
 const TradableStocks = () => {
   const apiUrl = "https://financialmodelingprep.com/api/v3/profile/";
@@ -18,14 +15,17 @@ const TradableStocks = () => {
       if (!companiesNames[i].symbol.includes("."))
       list.push(companiesNames[i].symbol)
     }
+    
     const listToString = list.toString();
     setQuery(listToString)
+
     doFetch(
       `${apiUrl}${query}?apikey=${process.env.REACT_APP_API_KEY}`
     );
     
+    
   },[query, doFetch])
-
+  console.log(data)
 
   return (
     <>
@@ -58,13 +58,14 @@ const TradableStocks = () => {
                 <div>Loading ...</div>
               ) : (
                 <>
+                 {data.price.sort()}
                   {data &&
                     data.map((item) => {
-                      // if (item.changes > 0)
+                     
                         return (
                           <li key={item.id} style={{ margin: "20px" }}>
                             <span>{item.symbol}</span>
-                            {/* <img src={item.image} width={20} height={20} /> */}
+
                             <span
                               style={
                                 item.changes < 0
