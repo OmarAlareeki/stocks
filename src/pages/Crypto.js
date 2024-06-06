@@ -58,40 +58,41 @@ const Search = () => {
           {isLoading ? (
             <div>Loading ...</div>
           ) : (
-            <>
-              {data &&
-                data.map((item) => {
-                  return (
-                    <li key={item.id}>
-                      <span>{item.price}</span>
-                      <span>{item.name}</span>
-                      <span> % {item.change}</span>
-                      <>
-                        {item.change < 0 ? (
-                          <ArrowDownward style={{ color: "red" }} />
+              <>
+                {data &&
+                  data.map((item) => {
+                    return (
+                      <li key={item.id} style={{ display: "flex", flexDirection: "column" }}>
+                        <span>{item.name}</span>
+                        <span>Price : {item.price}</span>
+                        <span> Change : %{item.change}    <>
+                          {item.change < 0 ? (
+                            <ArrowDownward style={{ color: "red" }} />
+                          ) : (
+                              <ArrowUpward />
+                            )}
+                        </></span>
+
+                        {!user ? (
+                          ""
                         ) : (
-                          <ArrowUpward />
-                        )}
-                      </>
-                      {!user ? (
-                        ""
-                      ) : (
-                        <button
-                          style={{
-                            border: "none",
-                            background: "none",
-                            color: "yellow",
-                          }}
-                          onClick={(event) => sendSymbol(event)}
-                        >
-                          TRACK
+                            <button
+                              style={{
+                                border: "none",
+                                background: "none",
+                                color: "yellow",
+                                cursor: "pointer"
+                              }}
+                              onClick={(event) => sendSymbol(event)}
+                            >
+                              TRACK
                         </button>
-                      )}
-                    </li>
-                  );
-                })}
-            </>
-          )}
+                          )}
+                      </li>
+                    );
+                  })}
+              </>
+            )}
         </ul>
       </div>
     </Container>
