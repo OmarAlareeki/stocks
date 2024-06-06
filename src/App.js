@@ -99,12 +99,12 @@ function App() {
             >
               News
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
               component={<Link to="tradable stocks" className="link" />}
               icon={<JoinFull className="icon-ready" />}
             >
               Tradable Stocks
-            </MenuItem>
+            </MenuItem> */}
             {/* <SubMenu
               component={<Link to="quote" className="link" />}
               label="quote"
