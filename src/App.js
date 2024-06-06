@@ -99,12 +99,12 @@ function App() {
             >
               News
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
               component={<Link to="tradable stocks" className="link" />}
               icon={<JoinFull className="icon-ready" />}
             >
               Tradable Stocks
-            </MenuItem>
+            </MenuItem> */}
             {/* <SubMenu
               component={<Link to="quote" className="link" />}
               label="quote"
@@ -127,12 +127,12 @@ function App() {
               Search
             </MenuItem>
 
-            <MenuItem
+            {/* <MenuItem
               component={<Link to="recommended" className="link" />}
               icon={<SsidChart />}
             >
               Charts
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               component={<Link to="companies profile" className="link" />}
               icon={<Info className="icon-ready" />}
@@ -193,12 +193,12 @@ function App() {
             <Route path="stock search" element={<StockSearch />} />
             <Route path="latest changes" element={<LatestChanges />} />
             <Route path="news" element={<News />} />
-            <Route path="tradable stocks" element={<TradableStocks />} />
+            {/* <Route path="tradable stocks" element={<TradableStocks />} /> */}
             <Route path="quote" element={<Quote />} />
             <Route path="search" element={<Search />} />
             <Route path="recommended" element={<Recommended />} />
             <Route path="companies profile" element={<CompaniesProfile />} />
-            <Route path="Charts" element={<Charts />} />
+            {/* <Route path="Charts" element={<Charts />} /> */}
             <Route path="Crypto" element={<Crypto />} />
             <Route
               path="saved track"

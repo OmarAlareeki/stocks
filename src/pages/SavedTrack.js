@@ -50,7 +50,7 @@ const SavedTrack = () => {
       );
     });
     return () => unsubscribe;
-  }, [list,doFetch]);
+  }, [list, doFetch]);
 
 
   return (
@@ -82,27 +82,27 @@ const SavedTrack = () => {
             {isLoading ? (
               <div>Loading ...</div>
             ) : (
-              <>
-                {data &&
-                  data.map((item) => {
-                    return (
-                      <li key={item.id}>
-                        <span>{item.symbol}</span>
-                        <span>{item.price}</span>
-                        <span>{item.name}</span>
-                        <span> % {item.change}</span>
-                        <>
-                          {item.change < 0 ? (
-                            <ArrowDownward style={{ color: "red" }} />
-                          ) : (
-                            <ArrowUpward />
-                          )}
-                        </>
-                      </li>
-                    );
-                  })}
-              </>
-            )}
+                <>
+                  {data &&
+                    data.map((item) => {
+                      return (
+                        <li key={item.id}>
+                          {/* <span>{item.name}</span> */}
+                          <span>{item.symbol}</span>
+                          <span>Price : {item.price}</span>
+                          <span> % {item.change}  <>
+                            {item.change < 0 ? (
+                              <ArrowDownward style={{ color: "red" }} />
+                            ) : (
+                                <ArrowUpward style ={{color : "lightGreen"}}/>
+                              )}
+                          </></span>
+
+                        </li>
+                      );
+                    })}
+                </>
+              )}
           </ul>
         </div>
       </Container>
