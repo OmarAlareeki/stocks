@@ -17,7 +17,7 @@ const Search = () => {
   return (
     <Container>
       <h1 className="header"> SEARCH PAGE</h1>
-      <h3>You can search by company name, compnay stock shortcut</h3>
+      <h3>You can search by company name, company stock shortcut</h3>
 
       <form
         onSubmit={(event) => {
