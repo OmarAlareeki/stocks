@@ -99,14 +99,12 @@ function App() {
             >
               Search
             </MenuItem>
-
             <MenuItem
               component={<Link to="/charts" />}
               icon={<SsidChart />}
             >
               Charts
             </MenuItem>
-            
             <MenuItem
               component={<Link to="/companies profile" />}
               icon={<Info className="icon-ready" />}

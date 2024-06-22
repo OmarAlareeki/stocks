@@ -11,7 +11,7 @@ const TradableStocks = () => {
 
 
   useEffect(() => {
-    for(var i = 0; i <= 200; i++) { 
+    for(var i = 0; i <= companiesNames.length; i++) { 
       if (!companiesNames[i].symbol.includes("."))
       list.push(companiesNames[i].symbol)
     }
@@ -22,7 +22,6 @@ const TradableStocks = () => {
     doFetch(
       `${apiUrl}${query}?apikey=${process.env.REACT_APP_API_KEY}`
     );
-    
     
   },[query, doFetch])
   console.log(data)
@@ -58,21 +57,19 @@ const TradableStocks = () => {
                 <div>Loading ...</div>
               ) : (
                 <>
-                 {data.price.sort()}
                   {data &&
-                    data.map((item) => {
-                     
-                        return (
+                  
+                    data.sort((a,b) => (a.changes > b.changes) ? -1 : 1).map((item) => {
+
+                      return (
                           <li key={item.id} style={{ margin: "20px" }}>
-                            <span>{item.symbol}</span>
+                            <span style={item.changes < 0 ? {display: "none" } : {}}>{item.symbol}</span>
 
                             <span
                               style={
                                 item.changes < 0
                                   ? {
-                                      fontSize: "12px",
-                                      margin: "20px",
-                                      color: "red",
+                                    display: "none"
                                     }
                                   : {
                                       fontSize: "12px",

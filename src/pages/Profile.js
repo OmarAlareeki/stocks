@@ -14,7 +14,7 @@ const Profile = () => {
         <img
           src={user.photoURL}
           alt="userPhoto"
-          style={{ borderRadius: "70px", border: "10px solid #ececec" }}
+          style={{ borderRadius: "70px", border: "12px solid #ececec" }}
         />
         <SignOut />
       </Container>

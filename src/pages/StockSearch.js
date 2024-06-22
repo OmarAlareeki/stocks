@@ -179,6 +179,69 @@ const StockSearch = () => {
           </li>
         </ol>
       </div>
+      <div
+        style={{
+          height: "70vh",
+          display: "flex",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <div
+          onLoad={(event) => {
+            doFetch(
+              `${apiUrl}${query}?apikey=${process.env.REACT_APP_API_KEY}`
+            );
+
+            event.preventDefault();
+          }}
+        >
+          <ul
+            style={{
+              listStyle: "none",
+              display: "flex",
+              flexDirection: "row",
+              background: "rgb(242, 242, 242)",
+              flexWrap: "wrap",
+              marginLeft: "-16px"
+            }}
+          >
+            {isError && <div>Something went wrong ...</div>}
+            {isLoading ? (
+              <div>Loading ...</div>
+            ) : (
+              <>
+                {data &&
+                  data.map((item) => {
+                    return (
+                      <li key={item.id} style={{ margin: "8px" }}>
+                        <img src={item.image} width={20} height={20} />
+                        <span
+                          style={
+                            item.changes < 0
+                              ? {
+                                  fontSize: "12px",
+                                  margin: "20px",
+                                  color: "red",
+                                }
+                              : {
+                                  fontSize: "12px",
+                                  margin: "20px",
+                                  color: "green",
+                                }
+                          }
+                        >
+                          {"$" + item.price}
+                        </span>
+                      </li>
+                    );
+                  })}
+              </>
+            )}
+          </ul>
+        </div>
+      </div>
     </Container>
   );
 };
