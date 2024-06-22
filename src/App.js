@@ -73,111 +73,63 @@ function App() {
             ></MenuItem>
 
             <MenuItem
-              component={<Link to="stock search" className="link" />}
+              component={<Link to="/stock search" />}
               icon={<Apps className="icon-ready" />}
             >
               StockSearch
             </MenuItem>
-            {/* <MenuItem
-              component={<Link to="latest changes" className="link" />}
-              icon={<Bolt />}
-            >
-              Latest Changes
-            </MenuItem> */}
-            {/* <SubMenu
-              component={<Link to="news" className="link" />}
-              label="News"
-              icon={<Newspaper className="icon-ready" />}
-            >
-              <MenuItem> Stocks</MenuItem>
-              <MenuItem> Currencies Exchange</MenuItem>
-              <MenuItem> cryptocurrencies</MenuItem>
-            </SubMenu> */}
+
             <MenuItem
-              component={<Link to="news" className="link" />}
+              component={<Link to="/news" />}
               icon={<Newspaper className="icon-ready" />}
             >
               News
             </MenuItem>
-            {/* <MenuItem
-              component={<Link to="tradable stocks" className="link" />}
-              icon={<JoinFull className="icon-ready" />}
-            >
-              Tradable Stocks
-            </MenuItem> */}
-            {/* <SubMenu
-              component={<Link to="quote" className="link" />}
-              label="quote"
-              icon={<RequestQuote className="icon-ready" />}
-            >
-              <MenuItem> Full Quote</MenuItem>
-              <MenuItem> Simple Quote</MenuItem>
-            </SubMenu> */}
+
             <MenuItem
-              component={<Link to="quote" className="link" />}
+              component={<Link to="/quote" />}
               icon={<RequestQuote className="icon-ready" />}
             >
               Quote
             </MenuItem>
 
             <MenuItem
-              component={<Link to="search" className="link" />}
+              component={<Link to="/search" />}
               icon={<Radar className="icon-ready" />}
             >
               Search
             </MenuItem>
 
             <MenuItem
-              component={<Link to="recommended" className="link" />}
+              component={<Link to="/charts" />}
               icon={<SsidChart />}
             >
               Charts
             </MenuItem>
+            
             <MenuItem
-              component={<Link to="companies profile" className="link" />}
+              component={<Link to="/companies profile" />}
               icon={<Info className="icon-ready" />}
             >
               Companies Profile
             </MenuItem>
-            {/* <SubMenu
-              component={<Link to="Charts" className="link" />}
-              label="charts"
-              icon={<SsidChart />}
-            >
-              <MenuItem> Chart Intraday </MenuItem>
-              <MenuItem> Daily Chart</MenuItem>
-            </SubMenu> */}
-            {/* <MenuItem
-              component={<Link to="recommended" className="link" />}
-              icon={<Insights />}
-            >
-              Recommended
-            </MenuItem> */}
-            {/* <SubMenu
-              component={<Link to="crypto" className="link" />}
-              label="Crypto"
-              icon={<CurrencyBitcoin className="icon-ready" />}
-            >
-              <MenuItem> Account </MenuItem>
-              <MenuItem> Privacy </MenuItem>
-              <MenuItem> Notifications </MenuItem>
-            </SubMenu> */}
-
+            
             <MenuItem
-              component={<Link to="crypto" className="link" />}
+              component={<Link to="/crypto" />}
               icon={<CurrencyBitcoin className="icon-ready" />}
             >
               Crypto
             </MenuItem>
 
             <MenuItem
-              component={<Link to="saved track" className="link" />}
+              component={<Link to="/saved track" />}
               icon={<Star />}
             >
               Saved Track
             </MenuItem>
+            
             <MenuItem
-              component={<Link to="profile" className="link" />}
+              component={<Link to="/profile" />}
               icon={<Person />}
             >
               Profile
@@ -189,28 +141,27 @@ function App() {
       <section>
         <UserAuthContextProvider>
           <Routes>
-            <Route index element={<Home />} style={{ width: "100%" }} />
-            <Route path="stock search" element={<StockSearch />} />
-            <Route path="latest changes" element={<LatestChanges />} />
-            <Route path="news" element={<News />} />
-            <Route path="tradable stocks" element={<TradableStocks />} />
-            <Route path="quote" element={<Quote />} />
-            <Route path="search" element={<Search />} />
-            <Route path="recommended" element={<Recommended />} />
-            <Route path="companies profile" element={<CompaniesProfile />} />
-            <Route path="Charts" element={<Charts />} />
-            <Route path="Crypto" element={<Crypto />} />
+            <Route index element={<Home />} />
+            <Route path="/stock search" element={<StockSearch />} />
+            <Route path="/latest changes" element={<LatestChanges />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/tradable stocks" element={<TradableStocks />} />
+            <Route path="/quote" element={<Quote />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/recommended" element={<Recommended />} />
+            <Route path="/companies profile" element={<CompaniesProfile />} />
+            <Route path="/charts" element={<Charts />} />
+            <Route path="/crypto" element={<Crypto />} />
             <Route
-              path="saved track"
+              path="/saved track"
               element={
                 <ProtectedRoute>
                   <SavedTrack />
                 </ProtectedRoute>
               }
             />
-
             <Route
-              path="profile"
+              path="/profile"
               element={
                 <ProtectedRoute>
                   <Profile />

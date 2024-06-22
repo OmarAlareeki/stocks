@@ -24,11 +24,6 @@ const useDataApi = (initialUrl, initialData) => {
     };
 
     fetchData();
-    // Fetch updated data every 30 seconds (adjust interval as needed)
-    // const intervalId = setInterval(fetchData, 30000);
-
-    // // Clean up function to clear interval when component unmounts
-    // return () => clearInterval(intervalId);
   }, [url]);
 
   return [{ data, isLoading, isError }, setUrl];

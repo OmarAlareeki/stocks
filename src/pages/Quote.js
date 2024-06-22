@@ -18,7 +18,7 @@ const Quote = () => {
     <>
       <Container>
         <h1 className="header"> Quote Page</h1>
-        <h3>You can search by company name, compnay stock shortcut</h3>
+        <h3>You can search by company name, company stock shortcut</h3>
         <form
           onSubmit={(event) => {
             doFetch(
@@ -39,7 +39,7 @@ const Quote = () => {
 
         <div className="listContainer">
           <ul style={{ display: "flex", flexDirection: "column" }}>
-          {isError && <div>Something went wrong ...</div>}
+            {isError && <div>Something went wrong ...</div>}
             {isLoading && <div>Loading....</div>}
             {data &&
               data.map((item) => {
@@ -62,8 +62,8 @@ const Quote = () => {
                       {item.change < 0 ? (
                         <ArrowDownward style={{ color: "red" }} />
                       ) : (
-                        <ArrowUpward />
-                      )}
+                          <ArrowUpward />
+                        )}
                     </li>
                     <></>
                   </li>
