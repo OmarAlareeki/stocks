@@ -24,7 +24,6 @@ const Charts = () => {
   const [logoUrl, setLogoUrl] = useState(null);
 
   useEffect(() => {
-    fetchData();
     fetchLogo();
   }, [query]);
 

@@ -1,112 +1,49 @@
-import { useState, useEffect, useRef } from "react";
-import {
-  query,
-  collection,
-  orderBy,
-  onSnapshot,
-  limit,
-} from "firebase/firestore";
-import { auth } from "../auth/auth";
+import React, { useState, useEffect } from "react";
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "../auth/auth";
-import { useUserAuth } from "../auth/UserAuthContent";
 import Container from "@mui/material/Container";
-import useDataApi from "../Hooks/axisFetch";
-import ArrowDownward from "@mui/icons-material/ArrowDownward";
-import ArrowUpward from "@mui/icons-material/ArrowUpward";
 
 const SavedTrack = () => {
-  const [quote, setQuote] = useState([]);
-  const scroll = useRef();
-  const { user } = useUserAuth(auth);
-  const [{ data, isLoading, isError }, doFetch] = useDataApi();
-  const list = [];
-  console.log(data);
+  const [trackedItems, setTrackedItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const q = query(
-      collection(db, "stks"),
-      orderBy("createdAt", "desc"),
-      limit(50)
-    );
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      const fetchedQuote = [];
-      QuerySnapshot.forEach((doc) => {
-        fetchedQuote.push({ ...doc.data(), id: doc.id });
-      });
-      const sortedQuote = fetchedQuote.sort(
-        (a, b) => a.createdAt - b.createdAt
-      );
-      const listOfSymbols = () => {
-        quote.map((item) => {
-          list.push(item.text)
-          return list
-        })
+    const unsubscribe = onSnapshot(
+      query(collection(db, "trackedStocks"), orderBy("createdAt", "desc")),
+      (snapshot) => {
+        const items = [];
+        snapshot.forEach((doc) => {
+          items.push({ id: doc.id, ...doc.data() });
+        });
+        setTrackedItems(items);
+        setLoading(false);
       }
+    );
 
-      setQuote(sortedQuote);
-      listOfSymbols()
-      doFetch(
-        `https://financialmodelingprep.com/api/v3/quote/${[list]}?apikey=77xtVWmNu1DOGBroooyXNWCxELSM8FV5`
-      );
-    });
-    return () => unsubscribe;
-  }, [list, doFetch]);
-
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <>
-      <Container>
-        <h1 className="header">KEEP TRACK OF YOUR SAVED STOCKS</h1>
-        <main className="chat-box">
-          {/* <div>
-            {quote?.map((quote) => (
-              <div key={quote.id} quote={quote}>
-                <span>{quote.text}</span>
-              </div>
-            ))}
-          </div> */}
-          {/* when a new message enters the chat, the screen scrolls down to the scroll div */}
-          {/* <span ref={scroll}></span>
-          <Search scroll={scroll} /> */}
-        </main>
-        {/* <div
-          onLoad={(event) => {
-         
-
-            event.preventDefault();
-          }}
-        ></div> */}
-        <div className="listContainer">
-          <ul className="list">
-            {isError && <div>Something went wrong ...</div>}
-            {isLoading ? (
-              <div>Loading ...</div>
-            ) : (
-                <>
-                  {data &&
-                    data.map((item) => {
-                      return (
-                        <li key={item.id}>
-                          {/* <span>{item.name}</span> */}
-                          <span>{item.symbol}</span>
-                          <span>Price : {item.price}</span>
-                          <span> % {item.change}  <>
-                            {item.change < 0 ? (
-                              <ArrowDownward style={{ color: "red" }} />
-                            ) : (
-                                <ArrowUpward style ={{color : "lightGreen"}}/>
-                              )}
-                          </></span>
-
-                        </li>
-                      );
-                    })}
-                </>
-              )}
-          </ul>
-        </div>
-      </Container>
-    </>
+    <Container>
+      <h1 className="header">SAVED TRACKS</h1>
+      {loading ? (
+        <div>Loading...</div>
+      ) : trackedItems.length === 0 ? (
+        <div>No tracked items found.</div>
+      ) : (
+        <ul className="list">
+          {trackedItems.map((item) => (
+            <li key={item.id}>
+              <span>Symbol: {item.symbol}</span>
+              <span>Price: ${item.price}</span>
+              <span>Name: {item.name}</span>
+              <span>Change: {item.change}%</span>
+              {/* Add any other fields you want to display */}
+            </li>
+          ))}
+        </ul>
+      )}
+    </Container>
   );
 };
 

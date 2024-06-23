@@ -11,6 +11,15 @@ const CompaniesProfile = () => {
     `${url}GOOGL?apikey=${process.env.REACT_APP_API_KEY}`
   );
 
+  const formatMarketCap = (marketCap) => {
+    // Check if marketCap is a valid number
+    if (!marketCap || isNaN(marketCap)) return "";
+
+    // Convert marketCap to number and format with commas
+    return Number(marketCap).toLocaleString();
+  };
+
+
   return (
     <>
       <Container>
@@ -21,7 +30,7 @@ const CompaniesProfile = () => {
             doFetch(
               `${url}${query}?apikey=${process.env.REACT_APP_API_KEY}`
             );
-            
+
             event.preventDefault();
           }}
         >
@@ -40,17 +49,17 @@ const CompaniesProfile = () => {
           data.map((item) => {
             return (
               <ul>
-                <li>{item.symbol}</li>
-                <li>{item.ceo}</li>
-                <li>{item.companyName}</li>
-                <li>{item.country}</li>
-                <li>{item.description}</li>
-                <li>{item.exchangeShortName}</li>
-                <li>{item.industry}</li>
-                <li>{item.ipoDate}</li>
-                <li>{item.mktCap}</li>
-                <li>{item.price}</li>
-                <li>{item.website}</li>
+                <li>Symbol: {item.symbol}</li>
+                <li>CEO: {item.ceo}</li>
+                <li>Company Name: {item.companyName}</li>
+                <li>Country: {item.country}</li>
+                <li>Description: {item.description}</li>
+                <li>Exchange: {item.exchangeShortName}</li>
+                <li>Industry: {item.industry}</li>
+                <li>IPO Date: {item.ipoDate}</li>
+                <li>Market Cap: {formatMarketCap(item.mktCap)}</li>
+                <li>Price: $ {item.price}</li>
+                <li>Website: {item.website}</li>
                 <img
                   src={item.image}
                   style={{

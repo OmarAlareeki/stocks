@@ -14,6 +14,11 @@ const Quote = () => {
     `${apiUrl}/googl?apikey=${process.env.REACT_APP_API_KEY}`
   );
 
+  const formatNumber = (num) => {
+    if (typeof num !== "number") return num;
+    return num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+  };
+
   return (
     <>
       <Container>
@@ -50,13 +55,13 @@ const Quote = () => {
                     <li>Compnay Name : {item.name}</li>
                     <li> Current Change : % {item.change}</li>
                     <li>Company Exchange Symbol : {item.exchange}</li>
-                    <li>Company market Cap : {item.marketCap}</li>
+                    <li>Company market Cap : {formatNumber(item.marketCap)}</li>
                     <li>Open For : {item.open}</li>
                     <li> Previous closing Price : $ {item.previousClose}</li>
-                    <li>Shares Outstanding : {item.sharesOutstanding}</li>
+                    <li>Shares Outstanding : {formatNumber(item.sharesOutstanding)}</li>
                     <li>High : {item.dayHigh}</li>
                     <li>Low : {item.dayLow}</li>
-                    <li>Volume : {item.volume}</li>
+                    <li>Volume : {formatNumber(item.volume)}</li>
                     <li>
                       {" "}
                       {item.change < 0 ? (

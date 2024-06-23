@@ -101,7 +101,7 @@ function App() {
             </MenuItem>
             <MenuItem
               component={<Link to="/charts" />}
-              icon={<SsidChart />}
+              icon={<SsidChart className="icon-ready" />}
             >
               Charts
             </MenuItem>
